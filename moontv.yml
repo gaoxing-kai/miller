@@ -1,0 +1,27 @@
+services:
+  moontv-core:
+    image: ghcr.nju.edu.cn/moontechlab/lunatv:latest
+    container_name: moontv-core
+    restart: on-failure
+    ports:
+      - '3088:3000'         # 修改前面的端口 访问网站
+    environment:
+      - USERNAME=admin       #修改角色用户名
+      - PASSWORD=123456      #修改登录密码
+      - NEXT_PUBLIC_STORAGE_TYPE=redis
+      - REDIS_URL=redis://moontv-redis:6379
+    networks:
+      - moontv-network
+    depends_on:
+      - moontv-redis
+  moontv-redis:
+    image: redis:alpine
+    container_name: moontv-redis
+    restart: unless-stopped
+    networks:
+      - moontv-network
+    volumes:
+      - ./redis:/data        
+networks:
+  moontv-network:
+    driver: bridge
