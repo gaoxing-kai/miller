@@ -1,2 +1,2 @@
 homepage:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
-moontv:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
+moontv:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
