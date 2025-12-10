@@ -16,7 +16,7 @@ services:
       - ACCESS_PASSWORD=123321  # 设置登录密码，防恶意修改保护机制，如果不需要可以注释或删除
       - CONFIG_PATH=/app/config
     volumes:
-      - /config:/app/config       
+      - ./config:/app/config       
       - /var/run/docker.sock:/var/run/docker.sock:ro          
     networks:
       - homepage-network
@@ -34,7 +34,7 @@ services:
     ports:
       - "3080:3000"  # 设置 homepage 导航页端口   前面3080 可以修改
     volumes:
-      - /config:/app/config           
+      - ./config:/app/config           
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - homepage-network
