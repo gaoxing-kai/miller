@@ -1,2 +1,6 @@
-homepage:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
-moontv:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
+homepage:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml:现代化主页仪表板
+suwayomi:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/suwayomi.yml:漫画阅读服务器
+libretv:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/libretv.yml:电视直播服务
+moontv:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml:直播源管理
+music:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/music.yml:音乐流媒体服务
+books:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/books.yml:电子书管理
