@@ -1,2 +1,2 @@
-homepage:家庭影院:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
-moontv:电影平台:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
+homepage:home:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
+moontv:nmea:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
