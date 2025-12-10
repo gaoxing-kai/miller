@@ -1,2 +1,2 @@
-homepage|网站导航页面|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
+homepage|好看的网站导航页面|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
 moontv|家庭影音平台|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
