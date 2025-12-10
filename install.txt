@@ -1,2 +1,2 @@
-homepage:home:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
-moontv:nmea:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
+homepage|网站导航页面|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
+moontv|家庭影音平台|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
