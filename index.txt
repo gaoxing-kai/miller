@@ -1,2 +1,2 @@
-﻿homepage:智能导航网页https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
-moontv:家庭观影平台https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
+﻿homepage:智能导航网页:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
+moontv:家庭观影平台:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
