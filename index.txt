@@ -1,1 +1,1 @@
-homepage:https://github.com/gaoxing-kai/miller/blob/main/homepage.yml
+homepage:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
