@@ -1,6 +1,5 @@
 homepage:现代化主页仪表板:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
 suwayomi:漫画阅读服务器:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/suwayomi.yml
 libretv:电视直播服务:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/libretv.yml
-moontv:直播源管理:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
 music:音乐流媒体服务:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/music.yml
 books:电子书管理:https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/books.yml
