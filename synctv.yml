@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  synctv:
+    image: synctvorg/synctv:latest
+    container_name: synctv
+    restart: unless-stopped
+    ports:
+      - "3055:8080"          
+    volumes:
+      - ./data:/root/.synctv  
+    environment:
+      - TZ=Asia/Shanghai
