@@ -1,0 +1,54 @@
+name: immich
+
+services:
+  immich-server:
+    container_name: immich_server
+    image: ghcr.nju.edu.cn/immich-app/immich-server:release
+    volumes:
+      - ./photos:/data
+      - /etc/localtime:/etc/localtime:ro
+      - ./geodata:/build/geodata
+      - ./countries:/usr/src/app/node_modules/i18n-iso-countries
+      - ./saomiao:/extlib    #/extlib 这个路径是添加扫描路径
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - '5011:2283'
+    depends_on:
+      - redis
+      - database
+    restart: always
+    healthcheck:
+      disable: false
+
+  immich-machine-learning:
+    container_name: immich_machine_learning
+    image: ghcr.nju.edu.cn/immich-app/immich-machine-learning:release
+    volumes:
+      - ./model:/cache
+    restart: always
+    healthcheck:
+      disable: false
+
+  redis:
+    container_name: immich_redis
+    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+    healthcheck:
+      test: redis-cli ping || exit 1
+    restart: always
+
+  database:
+    container_name: immich_postgres
+    image: ghcr.nju.edu.cn/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: immich
+      POSTGRES_INITDB_ARGS: '--data-checksums'
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    shm_size: 128mb
+    restart: always
+
+volumes:
+  model:
