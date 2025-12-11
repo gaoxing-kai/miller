@@ -1,3 +1,5 @@
+version: '3.8'
+
 name: immich
 
 services:
@@ -5,13 +7,16 @@ services:
     container_name: immich_server
     image: ghcr.nju.edu.cn/immich-app/immich-server:release
     volumes:
-      - ./photos:/data
+      - ./home-photos:/data
       - /etc/localtime:/etc/localtime:ro
       - ./geodata:/build/geodata
       - ./countries:/usr/src/app/node_modules/i18n-iso-countries
-      - ./saomiao:/extlib    #/extlib 这个路径是添加扫描路径
+      - ./photos:/extlib
     environment:
       - TZ=Asia/Shanghai
+      - DB_PASSWORD=postgres
+      - DB_USERNAME=postgres
+      - DB_DATABASE_NAME=immich
     ports:
       - '5011:2283'
     depends_on:
@@ -26,6 +31,11 @@ services:
     image: ghcr.nju.edu.cn/immich-app/immich-machine-learning:release
     volumes:
       - ./model:/cache
+    environment:
+      - TZ=Asia/Shanghai
+      - DB_PASSWORD=postgres
+      - DB_USERNAME=postgres
+      - DB_DATABASE_NAME=immich
     restart: always
     healthcheck:
       disable: false
@@ -46,7 +56,7 @@ services:
       POSTGRES_DB: immich
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data
     shm_size: 128mb
     restart: always
 
