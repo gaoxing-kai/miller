@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  ddns-go:
+    image: jeessy/ddns-go:latest
+    container_name: ddns-go
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - "4044:9876"  # Web管理界面端口
+    environment:
+      - TZ=Asia/Shanghai  # 设置时区
+    volumes:
+      - ./data:/root  # 配置文件持久化
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
