@@ -7,7 +7,7 @@ networks:
 services:
   homepage-config-manager:
     image: kwangyeonc/homepage-config-manager:latest
-    container_name: homepage-config-manager
+    container_name: homepage-config-manager 
     user: "0:0"
     ports:
       - "3081:3001"  # 配置页面端口    前面的3081可以自定义修改，打开管理页面用的。
@@ -26,7 +26,7 @@ services:
 
   homepage:
     image: ghcr.nju.edu.cn/gethomepage/homepage:latest
-    container_name: homepage
+    container_name: homepage   #网页导航站点
     environment:
       HOMEPAGE_ALLOWED_HOSTS: ip:3080  # 把IP:3080 填写NAS的IP地址
       PUID: 0  
