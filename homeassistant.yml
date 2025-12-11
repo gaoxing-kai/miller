@@ -1,0 +1,16 @@
+version: '3' 
+services:
+  homeassistant:
+    container_name: homeassistant  
+    image: ghcr.nju.edu.cn/home-assistant/home-assistant:stable 
+    volumes:
+      - ./config:/config                    # 本地目录
+      - /etc/localtime:/etc/localtime:ro    # 同步主机与容器的时间，确保时区一致 
+      - /run/dbus:/run/dbus:ro              # 允许HomeAssistant与系统总线通信（例如，控制蓝牙设备）
+    environment:
+      - TZ=Asia/Shanghai                   
+    ports:
+      - "3099:8123"                        
+    restart: unless-stopped 
+    privileged: true  
+    network_mode: host  
