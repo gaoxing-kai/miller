@@ -1,0 +1,25 @@
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    user: 0:0 
+    ports:
+      - "4011:4533"    
+    restart: always
+    environment:
+      ND_SCANSCHEDULE: 1h
+      ND_LOGLEVEL: info  
+      ND_SESSIONTIMEOUT: 24h
+      ND_BASEURL: ""
+    volumes:
+      - ./data:/data           #系统文件路径
+      - ./music:/music:ro     #存放自己的音乐文件   和下面一致
+
+  music_tag_web:
+    image: xhongc/music_tag_web:latest
+    container_name: music_tag_web
+    ports:
+      - "4012:8001"                
+    volumes:
+      - ./music:/app/media    #搜刮存放自己的音乐文件  和上面一致
+      - ./app-data:/app/data     #系统文件路径
+    restart: always
