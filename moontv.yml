@@ -4,7 +4,7 @@ services:
     container_name: moontv-core
     restart: on-failure
     ports:
-      - '3088:3000'         # 修改前面的端口 访问网站
+      - '3011:3000'         # 修改前面的端口 访问网站
     environment:
       - USERNAME=admin       #修改角色用户名
       - PASSWORD=123456      #修改登录密码
