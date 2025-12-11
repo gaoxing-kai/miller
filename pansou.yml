@@ -1,0 +1,7 @@
+services:
+ pansou: 
+  image: ghcr.io/fish2018/pansou-web 
+  container_name: pansou
+  ports:
+   - "22280:80"
+  restart: always
