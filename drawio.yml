@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  drawio:
+    image: jgraph/drawio:latest
+    container_name: drawio
+    restart: unless-stopped
+    ports:
+      - "3066:8080"       
+    environment:
+      - DRAWIO_DISABLE_ANALYTICS=true
+    volumes:
+      - ./data:/opt/data
+    user: "0:0"
