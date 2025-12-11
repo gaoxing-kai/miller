@@ -1,0 +1,14 @@
+version: "3.2"
+
+services:
+  sun-panel:
+    image: 'hslr/sun-panel:latest'
+    container_name: sun-panel
+    volumes:
+    - ./conf:/app/conf
+    - ./uploads:/app/uploads
+    - ./database:/app/database
+    - ./runtime:/app/runtime
+    ports:
+    - 4055:3002
+    restart: always
