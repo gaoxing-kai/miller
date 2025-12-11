@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  komga:
+    image: gotson/komga:latest
+    container_name: komga-synology
+    hostname: komga-synology
+    restart: unless-stopped
+    
+    environment:
+      - KOMGA_CONFIGURATION=/config
+      - SERVER_PORT=8080
+      - SPRING_PROFILES_ACTIVE=prod
+      - TZ=Asia/Shanghai
+    
+    ports:
+      - "4022:8080"           #前面的端口可以自定义  访问主页
+    
+    volumes:
+      - ./data:/data           #映射库文件 前面的地址用来存放文件 pdf格式
+      - ./config:/config       #系统目录
+      - ./logs:/logs           #日志
+      - ./backups:/backups     #备份
+      - ./comics:/comics:ro
+    
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8080 || exit 1"]       # 重要：IP 换成本地IP
+      interval: 30s
+      timeout: 20s
+      retries: 3
+      start_period: 90s
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
