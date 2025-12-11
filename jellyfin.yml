@@ -1,0 +1,28 @@
+version: '3.8'  
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest  
+    container_name: jellyfin
+    restart: unless-stopped  
+
+    ports:
+      - "3088:8096"  # Web UI 主端口 可以自行修改
+
+    environment:
+      - TZ=Asia/Shanghai  
+    user: "0:0"
+
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      # 媒体目录 - 根据实际情况修改路径
+      - ./movies:/media/movies:ro
+      - ./tvshows:/media/tvshows:ro
+      - ./music:/media/music:ro
+
+
+    extra_hosts:
+      - "api.themoviedb.org:13.224.161.90"
+      - "api.themoviedb.org:13.35.67.41"
+      - "image.tmdb.org:13.224.161.90"
+
