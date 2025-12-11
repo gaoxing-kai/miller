@@ -10,7 +10,7 @@ services:
     container_name: homepage-config-manager 
     user: "0:0"
     ports:
-      - "3081:3001"  # 配置页面端口    前面的3081可以自定义修改，打开管理页面用的。
+      - "3033:3001"  # 配置页面端口    前面的3081可以自定义修改，打开管理页面用的。
     environment:
       - NODE_ENV=production
       - ACCESS_PASSWORD=123321  # 设置登录密码，防恶意修改保护机制，如果不需要可以注释或删除
@@ -32,7 +32,7 @@ services:
       PUID: 0  
       PGID: 0  
     ports:
-      - "3080:3000"  # 设置 homepage 导航页端口   前面3080 可以修改
+      - "3034:3000"  # 设置 homepage 导航页端口   前面3080 可以修改
     volumes:
       - ./config:/app/config           
       - /var/run/docker.sock:/var/run/docker.sock:ro
