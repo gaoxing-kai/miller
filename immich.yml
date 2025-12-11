@@ -5,15 +5,15 @@ name: immich
 services:
   immich-server:
     container_name: immich_server
-    image: ghcr.nju.edu.cn/immich-app/immich-server:latest
+    image: ghcr.nju.edu.cn/immich-app/immich-server:v2
     volumes:
       - ./library:/data
       - /etc/localtime:/etc/localtime:ro
     environment:
       # 基本配置
-      TZ: Asia/Shanghai
-      IMMICH_VERSION: latest
-      IMMICH_LOG_LEVEL: verbose
+      TZ: Etc/UTC
+      IMMICH_VERSION: v2
+      IMMICH_LOG_LEVEL: log
       IMMICH_ENV: production
       
       # 数据库配置
@@ -26,20 +26,10 @@ services:
       # Redis配置
       REDIS_HOSTNAME: redis
       REDIS_PORT: 6379
-      REDIS_DBINDEX: 0
       
       # 服务器配置
       IMMICH_HOST: 0.0.0.0
       IMMICH_PORT: 2283
-      
-      # 系统配置
-      IMMICH_PROCESS_INVALID_IMAGES: "true"
-      IMMICH_IGNORE_MOUNT_CHECK_ERRORS: "true"
-      CPU_CORES: 4
-      
-      # 性能优化
-      IMMICH_API_METRICS_PORT: 8081
-      IMMICH_MICROSERVICES_METRICS_PORT: 8082
     ports:
       - '2283:2283'
     depends_on:
@@ -47,23 +37,22 @@ services:
         condition: service_healthy
       database:
         condition: service_healthy
-    restart: unless-stopped
+    restart: always
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:2283/api/server-version"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 60s
 
   immich-machine-learning:
     container_name: immich_machine_learning
-    image: ghcr.nju.edu.cn/immich-app/immich-machine-learning:latest
+    image: ghcr.nju.edu.cn/immich-app/immich-machine-learning:v2
     volumes:
       - ./model-cache:/cache
     environment:
       # 基本配置
-      TZ: Asia/Shanghai
-      IMMICH_VERSION: latest
+      TZ: Etc/UTC
+      IMMICH_VERSION: v2
       IMMICH_LOG_LEVEL: verbose
       IMMICH_ENV: production
       
@@ -77,10 +66,9 @@ services:
       # Redis配置
       REDIS_HOSTNAME: redis
       REDIS_PORT: 6379
-      REDIS_DBINDEX: 0
       
-      # 机器学习模型配置 - 使用指定模型
-      # CLIP 模型配置
+      # 机器学习模型配置 - 使用指定的大模型
+      # CLIP 模型配置 - 使用 ViT-B-32
       MACHINE_LEARNING_PRELOAD__CLIP__TEXTUAL: "ViT-B-32::openai"
       MACHINE_LEARNING_PRELOAD__CLIP__VISUAL: "ViT-B-32::openai"
       
@@ -88,52 +76,33 @@ services:
       MACHINE_LEARNING_PRELOAD__FACIAL_RECOGNITION__RECOGNITION: "antelopev2"
       MACHINE_LEARNING_PRELOAD__FACIAL_RECOGNITION__DETECTION: "antelopev2"
       
-      # 模型缓存配置
+      # 模型缓存和性能配置
       MACHINE_LEARNING_CACHE_FOLDER: /cache
       MACHINE_LEARNING_MODEL_TTL: 1800
-      MACHINE_LEARNING_MODEL_TTL_POLL_S: 30
-      
-      # 性能优化配置
-      MACHINE_LEARNING_REQUEST_THREADS: 4
-      MACHINE_LEARNING_MODEL_INTRA_OP_THREADS: 2
-      MACHINE_LEARNING_MODEL_INTER_OP_THREADS: 1
-      MACHINE_LEARNING_WORKERS: 1
+      MACHINE_LEARNING_REQUEST_THREADS: 2
       MACHINE_LEARNING_WORKER_TIMEOUT: 300
-      MACHINE_LEARNING_MAX_BATCH_SIZE__FACIAL_RECOGNITION: 4
       
-      # 硬件加速配置
+      # 硬件加速
       MACHINE_LEARNING_ANN: "true"
       MACHINE_LEARNING_RKNN: "true"
-      MACHINE_LEARNING_ANN_TUNING_LEVEL: 2
-      MACHINE_LEARNING_ANN_FP16_TURBO: "false"
-      
-      # 网络优化（针对国内环境）
-      HF_HUB_DISABLE_SYMLINKS_WARNING: "1"
-      HF_HUB_ENABLE_HF_TRANSFER: "1"
-      HF_HUB_OFFLINE: "0"
-      
-      # 调试信息
-      MACHINE_LEARNING_LOG_LEVEL: "INFO"
-    restart: unless-stopped
+    restart: always
     depends_on:
       redis:
         condition: service_healthy
       database:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "timeout 10 bash -c 'echo > /dev/tcp/localhost/3003' || exit 1"]
+      test: ["CMD-SHELL", "timeout 5 bash -c 'echo > /dev/tcp/localhost/3003' || exit 1"]
       interval: 30s
-      timeout: 15s
-      retries: 5
-      start_period: 300s
+      timeout: 10s
+      retries: 3
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8.0.0-alpine
-    command: valkey-server --save 60 1 --loglevel warning --appendonly no
-    restart: unless-stopped
+    image: docker.io/valkey/valkey:8@sha256:81db6d39e1bba3b3ff32bd3a1b19a6d69690f94a3954ec131277b9a26b95b3aa
+    restart: always
     healthcheck:
-      test: ["CMD", "valkey-cli", "ping"]
+      test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 3s
       retries: 5
@@ -148,11 +117,10 @@ services:
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
       - ./postgres:/var/lib/postgresql/data
-    shm_size: 512mb
-    restart: unless-stopped
+    shm_size: 128mb
+    restart: always
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d immich"]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 30s
