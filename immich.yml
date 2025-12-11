@@ -1,22 +1,37 @@
-version: '3.8'
-
 name: immich
+
+# 环境变量配置
+x-environment: &default-environment
+  # 基本配置
+  TZ=Asia/Shanghai
+  IMMICH_VERSION: v2
+  IMMICH_LOG_LEVEL: log
+  IMMICH_ENV: production
+  
+  # 数据库配置
+  DB_USERNAME: postgres
+  DB_PASSWORD: postgres  # 请修改为强密码！
+  DB_DATABASE_NAME: immich
+  DB_HOSTNAME: database
+  DB_PORT: 5432
+  
+  # Redis配置
+  REDIS_HOSTNAME: redis
+  REDIS_PORT: 6379
+  
+  # 服务器配置
+  IMMICH_HOST: 0.0.0.0
+  IMMICH_PORT: 2283
 
 services:
   immich-server:
     container_name: immich_server
-    image: ghcr.nju.edu.cn/immich-app/immich-server:release
+    image: ghcr.nju.edu.cn/immich-app/immich-server:${IMMICH_VERSION:-release}
     volumes:
-      - ./home-photos:/data
+      - ./library:/data  # 上传文件存储位置
       - /etc/localtime:/etc/localtime:ro
-      - ./geodata:/build/geodata
-      - ./countries:/usr/src/app/node_modules/i18n-iso-countries
-      - ./photos:/extlib
     environment:
-      - TZ=Asia/Shanghai
-      - DB_PASSWORD=postgres
-      - DB_USERNAME=postgres
-      - DB_DATABASE_NAME=immich
+      <<: *default-environment
     ports:
       - '5011:2283'
     depends_on:
@@ -24,41 +39,52 @@ services:
       - database
     restart: always
     healthcheck:
-      disable: false
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:2283/api/server-version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   immich-machine-learning:
     container_name: immich_machine_learning
-    image: ghcr.nju.edu.cn/immich-app/immich-machine-learning:release
+    image: ghcr.nju.edu.cn/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
     volumes:
-      - ./model:/cache
+      - model-cache:/cache
     environment:
-      - TZ=Asia/Shanghai
-      - DB_PASSWORD=postgres
-      - DB_USERNAME=postgres
-      - DB_DATABASE_NAME=immich
+      <<: *default-environment
     restart: always
     healthcheck:
-      disable: false
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3003/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
-    healthcheck:
-      test: redis-cli ping || exit 1
+    image: docker.io/valkey/valkey:8@sha256:81db6d39e1bba3b3ff32bd3a1b19a6d69690f94a3954ec131277b9a26b95b3aa
     restart: always
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
 
   database:
     container_name: immich_postgres
     image: ghcr.nju.edu.cn/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: postgres  # 请修改为强密码！
       POSTGRES_USER: postgres
       POSTGRES_DB: immich
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data  # 数据库文件存储位置
     shm_size: 128mb
     restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
-  model:
+  model-cache:
