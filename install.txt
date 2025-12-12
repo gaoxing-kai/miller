@@ -1,24 +1,16 @@
-# Miller Docker 部署索引文件
-# 格式：项目名称|项目描述|项目端口|项目密码|配置文件URL
-# 注意：字段使用竖线(|)分隔，如果某项没有内容可以留空但不能省略分隔符
+homepage|主页导航非常漂亮|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
+moontv|家庭免费影音媒体|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
+openlist|私人网络云盘|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/openlist.yml
+synctv|和朋友一起看电影|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/synctv.yml
+navidrome|个人音乐服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/navidrome.yml
+homeassistant|全屋智能家居中枢|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homeassistant.yml
+komga|漫画阅读器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/komga.yml
+jellyfin|影音媒体服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/jellyfin.yml
+qinglong|青龙面板自动化|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/qinglong.yml
+ddnsgo|动态域名解析|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/ddnsgo.yml
+pansou|免费资源搜索|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/pansou.yml
+panel|docker导航页面|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/panel.yml
+libretv|免费在线视频搜索|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/libretv.yml
+immich|家庭AI智能相册|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/immich.yml
+drawio|网页绘图工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/drawio.yml
 
-# Web 应用
-nginx|Nginx Web服务器|80|admin123|https://raw.githubusercontent.com/gaoxing-kai/miller/main/configs/nginx.yml
-wordpress|WordPress博客|8080|wpadmin:wp123|https://raw.githubusercontent.com/gaoxing-kai/miller/main/configs/wordpress.yml
-
-# 数据库
-mysql|MySQL数据库|3306|root:mysql123|https://raw.githubusercontent.com/gaoxing-kai/miller/main/configs/mysql.yml
-redis|Redis缓存服务器|6379||https://raw.githubusercontent.com/gaoxing-kai/miller/main/configs/redis.yml
-postgres|PostgreSQL数据库|5432|postgres:pg123|https://raw.githubusercontent.com/gaoxing-kai/miller/main/configs/postgres.yml
-
-# 开发工具
-vscode|VS Code在线编辑器|3000||https://raw.githubusercontent.com/gaoxing-kai/miller/main/configs/vscode.yml
-jenkins|Jenkins持续集成|8081|admin:jenkins123|https://raw.githubusercontent.com/gaoxing-kai/miller/main/configs/jenkins.yml
-
-# 媒体服务器
-jellyfin|Jellyfin媒体服务器|8096||https://raw.githubusercontent.com/gaoxing-kai/miller/main/configs/jellyfin.yml
-plex|Plex媒体服务器|32400||https://raw.githubusercontent.com/gaoxing-kai/miller/main/configs/plex.yml
-
-# 网络工具
-portainer|Portainer容器管理|9000|admin:portainer123|https://raw.githubusercontent.com/gaoxing-kai/miller/main/configs/portainer.yml
-traefik|Traefik反向代理|8080||https://raw.githubusercontent.com/gaoxing-kai/miller/main/configs/traefik.yml
