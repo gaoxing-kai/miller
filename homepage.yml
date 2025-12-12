@@ -29,8 +29,7 @@ services:
     container_name: homepage   #网页导航站点
     environment:
       HOMEPAGE_ALLOWED_HOSTS: ip:3080  # 把IP:3080 填写NAS的IP地址
-      PUID: 0  
-      PGID: 0  
+      user: "0:0" 
     ports:
       - "3034:3000"  # 设置 homepage 导航页端口   前面3080 可以修改
     volumes:
