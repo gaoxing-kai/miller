@@ -10,10 +10,10 @@ services:
     container_name: homepage-config-manager 
     user: "0:0"
     ports:
-      - "3033:3001"  # 配置页面端口    前面的3081可以自定义修改，打开管理页面用的。
+      - "3033:3001"  # 配置页面端口
     environment:
       - NODE_ENV=production
-      - ACCESS_PASSWORD=123321  # 设置登录密码，防恶意修改保护机制，如果不需要可以注释或删除
+      - ACCESS_PASSWORD=123321  # 设置登录密码
       - CONFIG_PATH=/app/config
     volumes:
       - ./config:/app/config       
@@ -26,12 +26,12 @@ services:
 
   homepage:
     image: ghcr.nju.edu.cn/gethomepage/homepage:latest
-    container_name: homepage   #网页导航站点
+    container_name: homepage
+    user: "0:0"  # 修正：从environment移动到正确位置
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: ip:3080  # 把IP:3080 填写NAS的IP地址
-      user: "0:0" 
+      - HOMEPAGE_ALLOWED_HOSTS=ip:3080  # 修正：使用正确的环境变量语法
     ports:
-      - "3034:3000"  # 设置 homepage 导航页端口   前面3080 可以修改
+      - "3034:3000"  # 导航页端口
     volumes:
       - ./config:/app/config           
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -39,7 +39,7 @@ services:
       - homepage-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost"]  # 健康检查 URL+端口
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]  # 修正：添加端口号
       interval: 30s
       timeout: 10s
       retries: 3
@@ -60,7 +60,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       - GLANCES_OPT=-w  
+    networks:  # 新增：添加glances到同一网络
+      - homepage-network
     deploy:
       resources:
         limits:
-          memory: 128M  
+          memory: 128M
