@@ -7,17 +7,17 @@ networks:
 services:
   homepage-config-manager:
     image: kwangyeonc/homepage-config-manager:latest
-    container_name: homepage-config-manager 
+    container_name: homepage-config-manager
     user: "0:0"
     ports:
-      - "3033:3001"  # 配置页面端口
+      - "3033:3001"  # 配置管理页面端口
     environment:
       - NODE_ENV=production
-      - ACCESS_PASSWORD=123321  # 设置登录密码
+      - ACCESS_PASSWORD=123321
       - CONFIG_PATH=/app/config
     volumes:
-      - ./config:/app/config       
-      - /var/run/docker.sock:/var/run/docker.sock:ro          
+      - ./config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - homepage-network
     depends_on:
@@ -27,19 +27,23 @@ services:
   homepage:
     image: ghcr.nju.edu.cn/gethomepage/homepage:latest
     container_name: homepage
-    user: "0:0"  # 修正：从environment移动到正确位置
+    user: "0:0"
     environment:
-      - HOMEPAGE_ALLOWED_HOSTS=ip:3080  # 修正：使用正确的环境变量语法
+      # 使用 host.docker.internal 指向宿主机，并允许本地访问
+      - HOMEPAGE_ALLOWED_HOSTS=host.docker.internal:3034, localhost:3034
     ports:
-      - "3034:3000"  # 导航页端口
+      - "3034:3000"  # 外部端口3034映射到容器内部端口3000
     volumes:
-      - ./config:/app/config           
+      - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - homepage-network
+    extra_hosts:
+      # 关键配置：确保在所有Docker环境中都能解析宿主机地址
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]  # 修正：添加端口号
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -50,17 +54,17 @@ services:
     container_name: glances
     restart: unless-stopped
     ports:
-      - "61208:61208"  
-      - "61209:61209"  
+      - "61208:61208"
+      - "61209:61209"
     volumes:
-      - /:/rootfs:ro  
+      - /:/rootfs:ro
       - /var/run:/var/run:ro
       - /sys:/sys:ro
       - /etc/machine-id:/etc/machine-id:ro
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - GLANCES_OPT=-w  
-    networks:  # 新增：添加glances到同一网络
+      - GLANCES_OPT=-w
+    networks:
       - homepage-network
     deploy:
       resources:
