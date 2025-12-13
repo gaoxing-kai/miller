@@ -5,13 +5,17 @@ services:
     image: 'hslr/sun-panel:latest'
     container_name: sun-panel
     volumes:
-    - ./conf:/app/conf
-    - ./uploads:/app/uploads
-    - ./database:/app/database
-    - ./runtime:/app/runtime
+      - ./conf:/app/conf
+      - ./uploads:/app/uploads
+      - ./database:/app/database
+      - ./runtime:/app/runtime
     ports:
-    - 4055:3002
-    environment:
-    - USERNAME=admin@sun.cc     
-    - PASSWORD=12345678    
+      - 4055:3002
     restart: always
+    networks:
+      - default
+
+networks:
+  default:
+    name: sun-panel-default-network
+    driver: bridge
