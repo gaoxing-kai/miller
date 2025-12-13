@@ -10,6 +10,8 @@ services:
       - ./data:/root/.synctv
     environment:
       - TZ=Asia/Shanghai
+      - USERNAME=root
+      - PASSWORD=root
     networks:
       - synctv-network
 
