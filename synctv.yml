@@ -1,18 +1,18 @@
 version: "3.9"
 services:
-  syncth:
-    image: syncthorg/syncth:latest
-    container_name: syncth
+  synctv:
+    image: synctvorg/synctv:latest
+    container_name: synctv
     restart: unless-stopped
     ports:
       - "3055:8080"
     volumes:
-      - ./data:/root/.syncth
+      - ./data:/root/.synctv
     environment:
       - TZ=Asia/Shanghai
     networks:
-      - syncth-network
+      - synctv-network
 
 networks:
-  syncth-network:
+  synctv-network:
     driver: bridge
