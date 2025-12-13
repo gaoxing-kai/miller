@@ -21,7 +21,8 @@ services:
     networks:
       - homepage-network
     depends_on:
-      - homepage
+      homepage:
+        condition: service_healthy  # 等待 homepage 健康后再启动
     restart: unless-stopped
 
   homepage:

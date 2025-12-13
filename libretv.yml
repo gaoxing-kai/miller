@@ -3,7 +3,7 @@ services:
     image: bestzwei/libretv:latest
     container_name: libretv
     networks:
-      - livetv
+      - livetv-network
     ports:
       - "3022:8080"
     environment:
@@ -11,6 +11,5 @@ services:
     restart: always
 
 networks:
-  livetv:
+  livetv-network:
     driver: bridge
-    name: livetv

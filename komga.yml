@@ -6,6 +6,8 @@ services:
     container_name: komga-synology
     hostname: komga-synology
     restart: unless-stopped
+    networks:
+      - komga-network
     
     environment:
       - KOMGA_CONFIGURATION=/config
@@ -35,3 +37,7 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
+
+networks:
+  komga-network:
+    driver: bridge

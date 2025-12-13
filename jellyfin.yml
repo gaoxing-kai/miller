@@ -3,7 +3,9 @@ services:
   jellyfin:
     image: jellyfin/jellyfin:latest  
     container_name: jellyfin
-    restart: unless-stopped  
+    restart: unless-stopped
+    networks:
+      - jellyfin-network
 
     ports:
       - "3088:8096"  # Web UI 主端口 可以自行修改
@@ -20,9 +22,11 @@ services:
       - ./tvshows:/media/tvshows:ro
       - ./music:/media/music:ro
 
-
     extra_hosts:
       - "api.themoviedb.org:13.224.161.90"
       - "api.themoviedb.org:13.35.67.41"
       - "image.tmdb.org:13.224.161.90"
 
+networks:
+  jellyfin-network:
+    driver: bridge

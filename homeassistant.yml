@@ -10,7 +10,7 @@ services:
     environment:
       - TZ=Asia/Shanghai                   
     ports:
-      - "3099:8123"                        
+      - "8123:8123"                        
     restart: unless-stopped 
     privileged: true  
-    network_mode: host  
+    network_mode: host  # 使用主机网络模式

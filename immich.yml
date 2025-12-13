@@ -43,6 +43,8 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    networks:
+      - immich-network
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -96,6 +98,8 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    networks:
+      - immich-network
 
   redis:
     container_name: immich_redis
@@ -106,6 +110,8 @@ services:
       interval: 10s
       timeout: 3s
       retries: 5
+    networks:
+      - immich-network
 
   database:
     container_name: immich_postgres
@@ -124,3 +130,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - immich-network
+
+networks:
+  immich-network:
+    driver: bridge

@@ -13,6 +13,8 @@ services:
     volumes:
       - ./data:/data           #系统文件路径
       - ./music:/music:ro     #存放自己的音乐文件   和下面一致
+    networks:
+      - media-network
 
   music_tag_web:
     image: xhongc/music_tag_web:latest
@@ -23,3 +25,9 @@ services:
       - ./music:/app/media    #搜刮存放自己的音乐文件  和上面一致
       - ./app-data:/app/data     #系统文件路径
     restart: always
+    networks:
+      - media-network
+
+networks:
+  media-network:
+    driver: bridge
