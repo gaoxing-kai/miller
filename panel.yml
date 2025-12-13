@@ -11,4 +11,7 @@ services:
     - ./runtime:/app/runtime
     ports:
     - 4055:3002
+    environment:
+    - USERNAME=admin@sun.cc     
+    - PASSWORD=12345678    
     restart: always
