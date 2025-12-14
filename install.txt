@@ -18,6 +18,6 @@ immich|家庭AI智能相册|https://raw.githubusercontent.com/gaoxing-kai/miller
 drawio|网页绘图工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/drawio.yml|docker
 
 # Shell脚本项目示例
-immich-shell|家庭AI智能相册(Shell版)|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/immich-shell.sh|shell
+immichshell|家庭AI智能相册(Shell版)|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/immichshell.sh|shell
 speedtest|网络速度测试|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/speedtest.sh|shell
 systeminfo|系统信息查看|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/systeminfo.sh|shell
