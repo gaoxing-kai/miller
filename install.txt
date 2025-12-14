@@ -1,16 +1,22 @@
-homepage|主页导航非常漂亮|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
-moontv|家庭免费影音媒体|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
-openlist|私人网络云盘|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/openlist.yml
-synctv|和朋友一起看电影|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/synctv.yml
-navidrome|个人音乐服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/navidrome.yml
-homeassistant|全屋智能家居中枢|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homeassistant.yml
-komga|漫画阅读器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/komga.yml
-jellyfin|影音媒体服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/jellyfin.yml
-qinglong|青龙面板自动化|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/qinglong.yml
-ddnsgo|动态域名解析|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/ddnsgo.yml
-pansou|免费资源搜索|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/pansou.yml
-panel|docker导航页面|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/panel.yml
-libretv|免费在线视频搜索|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/libretv.yml
-immich|家庭AI智能相册|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/immich.yml
-drawio|网页绘图工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/drawio.yml
+# 项目类型可选，默认为docker
 
+# Docker Compose项目
+homepage|主页导航非常漂亮|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml|docker
+moontv|家庭免费影音媒体|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml|docker
+openlist|私人网络云盘|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/openlist.yml|docker
+synctv|和朋友一起看电影|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/synctv.yml|docker
+navidrome|个人音乐服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/navidrome.yml|docker
+homeassistant|全屋智能家居中枢|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homeassistant.yml|docker
+komga|漫画阅读器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/komga.yml|docker
+jellyfin|影音媒体服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/jellyfin.yml|docker
+qinglong|青龙面板自动化|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/qinglong.yml|docker
+ddnsgo|动态域名解析|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/ddnsgo.yml|docker
+pansou|免费资源搜索|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/pansou.yml|docker
+panel|docker导航页面|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/panel.yml|docker
+libretv|免费在线视频搜索|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/libretv.yml|docker
+immich|家庭AI智能相册|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/immich.yml|docker
+drawio|网页绘图工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/drawio.yml|docker
+
+# Shell脚本项目示例
+speedtest|网络速度测试|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/speedtest.sh|shell
+systeminfo|系统信息查看|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/systeminfo.sh|shell
