@@ -1,6 +1,7 @@
-# 项目类型可选，默认为docker
+# 米乐星球NAS项目索引文件
+# 格式：项目名称|项目描述|配置文件URL|项目类型(docker或shell)
 
-# Docker Compose项目
+# ============ Docker Compose项目 ============
 homepage|主页导航非常漂亮|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml|docker
 moontv|家庭免费影音媒体|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml|docker
 openlist|私人网络云盘|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/openlist.yml|docker
@@ -17,7 +18,11 @@ libretv|免费在线视频搜索|https://raw.githubusercontent.com/gaoxing-kai/m
 immich|家庭AI智能相册|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/immich.yml|docker
 drawio|网页绘图工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/drawio.yml|docker
 
-# Shell脚本项目示例
-immichshell|家庭AI智能相册(Shell版)|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/immichshell.sh|shell
+# ============ Shell脚本项目 ============
+immich-shell|家庭AI智能相册(Shell版)|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/immich-shell.sh|shell
 speedtest|网络速度测试|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/speedtest.sh|shell
 systeminfo|系统信息查看|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/systeminfo.sh|shell
+backup|系统备份脚本|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/backup.sh|shell
+web-app|通用Web应用部署模板|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/web-app-template.sh|shell
+database-mysql|MySQL数据库服务|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/database-mysql.sh|shell
+monitoring|系统监控面板|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/monitoring.sh|shell
