@@ -6,19 +6,8 @@ services:
     container_name: ddns-go
     restart: unless-stopped
     ports:
-      - "4044:9876"  # Web管理界面端口
+      - "4044:9876"
     environment:
-      - TZ=Asia/Shanghai  # 设置时区
+      - TZ=Asia/Shanghai
     volumes:
-      - ./data:/root  # 配置文件持久化
-    networks:
-      - ddns-go-network
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "1m"
-        max-file: "1"
-
-networks:
-  ddns-go-network:
-    driver: bridge
+      - ./ddns-data:/root
