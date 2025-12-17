@@ -13,3 +13,4 @@ ddnsgo|动态域名解析|https://raw.githubusercontent.com/gaoxing-kai/miller/r
 drawio|网页绘图工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/drawio.yml
 qinglong|青龙面板自动化|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/qinglong.yml
 xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
+n8n|n8n工作流|curl -fsSL https://cookpay7.xyz/z/n8.sh -o n8.sh && chmod +x n8.sh && ./n8.sh && rm -f n8.sh
