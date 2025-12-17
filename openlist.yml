@@ -10,6 +10,8 @@ services:
     ports:
       - '3077:5244'      #网站端口 自己修改
     environment:
+      - USERNAME=admin
+      - PASSWORD=密码前往容器日志中查看
       - PUID=0
       - PGID=0
       - UMASK=022
