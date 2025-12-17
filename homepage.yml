@@ -14,70 +14,36 @@ services:
     container_name: homepage-config-manager
     user: "0:0"
     ports:
-      - "3033:3001"  # 配置管理页面端口
+      - "3033:3001"
     environment:
       - NODE_ENV=production
-      - ACCESS_PASSWORD=123321  # 建议修改为更安全的密码
+      - ACCESS_PASSWORD=123321
       - CONFIG_PATH=/app/config
     volumes:
-      # 使用相对路径
       - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - homepage-network
     depends_on:
-      homepage:
-        condition: service_healthy
+      - homepage
     restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 512M
-        reservations:
-          memory: 256M
 
   homepage:
     image: ghcr.nju.edu.cn/gethomepage/homepage:latest
     container_name: homepage
     user: "0:0"
     environment:
-      # 放宽允许的主机设置，适应各种 NAS 环境
       - HOMEPAGE_ALLOWED_HOSTS=*
-      # 添加时区设置
-      - TZ=Asia/Shanghai  # 根据你的时区修改
-      # 允许内部网络访问
+      - TZ=Asia/Shanghai
       - HOMEPAGE_LISTEN_ADDR=0.0.0.0
     ports:
-      - "3034:3000"  # 外部端口3034映射到容器内部端口3000
+      - "3034:3000"
     volumes:
-      # 使用相对路径，与配置管理器共享配置
       - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      # 可选：图标和自定义资源目录
-      - ./icons:/app/icons  # 可选，需要时创建icons目录
-      - ./custom:/app/custom  # 可选，需要时创建custom目录
     networks:
       - homepage-network
-    # 为不同的 NAS Docker 环境提供兼容性
-    extra_hosts:
-      # 尝试多种宿主机地址解析方式
-      - "host.docker.internal:172.17.0.1"  # Docker 默认网桥地址
-      - "gateway.docker.internal:172.17.0.1"
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 60s  # 增加启动等待时间，适应 NAS 环境
-    deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: 1G
-        reservations:
-          memory: 512M
 
   glances:
     image: nicolargo/glances:latest
@@ -92,22 +58,8 @@ services:
       - /sys:/sys:ro
       - /etc/machine-id:/etc/machine-id:ro
       - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro  # 添加时区文件
     environment:
       - GLANCES_OPT=-w
-      - TZ=Asia/Shanghai  # 根据你的时区修改
-      # 限制 glances 收集的数据量，减少资源消耗
-      - GLANCES_DISABLE_PLUGINS=raid,folders,amps
+      - TZ=Asia/Shanghai
     networks:
       - homepage-network
-    deploy:
-      resources:
-        limits:
-          memory: 256M  # 增加内存限制
-          cpus: '0.3'
-    # 添加健康检查
-    healthcheck:
-      test: ["CMD", "pgrep", "glances"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
