@@ -20,7 +20,10 @@ services:
     image: xhongc/music_tag_web:latest
     container_name: music_tag_web
     ports:
-      - "4012:8001"                
+      - "4012:8001"   
+    environment:
+      - USERNAME=admin
+      - PASSWORD=admin	  
     volumes:
       - ./music:/app/media    #搜刮存放自己的音乐文件  和上面一致
       - ./app-data:/app/data     #系统文件路径
