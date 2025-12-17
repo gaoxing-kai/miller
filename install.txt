@@ -12,3 +12,4 @@ jellyfin|影音媒体服务器|https://raw.githubusercontent.com/gaoxing-kai/mil
 ddnsgo|动态域名解析|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/ddnsgo.yml
 drawio|网页绘图工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/drawio.yml
 qinglong|青龙面板自动化|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/qinglong.yml
+xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
