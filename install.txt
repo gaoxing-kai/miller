@@ -1,5 +1,5 @@
 homepage|主页导航非常漂亮|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
-homeassistant|全屋智能家居中枢|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homeassistant.yml
+homeassistant|全屋智能家中枢|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homeassistant.yml
 panel|docker导航页面|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/panel.yml
 openlist|私人网络云盘|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/openlist.yml
 pansou|免费资源搜索|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/pansou.yml
