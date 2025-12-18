@@ -1,3 +1,4 @@
+moviepilot|自动化影视管理平台|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moviepilot.yml
 homepage|主页导航非常漂亮|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
 homeassistant|全屋智能家居中枢|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homeassistant.yml
 panel|docker导航页面|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/panel.yml
@@ -9,10 +10,12 @@ synctv|和朋友一起看电影|https://raw.githubusercontent.com/gaoxing-kai/mi
 navidrome|个人音乐服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/navidrome.yml
 komga|漫画阅读器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/komga.yml
 jellyfin|影音媒体服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/jellyfin.yml
+emby|影音媒体服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/emby.yml
 ddnsgo|动态域名解析|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/ddnsgo.yml
 drawio|网页绘图工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/drawio.yml
 qinglong|青龙面板自动化|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/qinglong.yml
 xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
 n8n|n8n工作流|curl -fsSL https://cookpay7.xyz/z/n8.sh -o n8.sh && chmod +x n8.sh && ./n8.sh && rm -f n8.sh
 qbittorrent|BT下载神器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/qbittorrent.yml
+transmission|下载专用神器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/transmission.yml
 weizhi|为知笔记|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/weizhi.yml

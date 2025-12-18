@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  moviepilot:
+    image: jxxghp/moviepilot:latest
+    container_name: moviepilot
+    restart: unless-stopped
+    ports:
+      - "4099:3000"  # 主机端口:容器端口
+    environment:
+      - TZ=Asia/Shanghai
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./config:/config
+      - ./data:/data
+      # 根据需要添加媒体目录挂载
+      # - /path/to/media:/media
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

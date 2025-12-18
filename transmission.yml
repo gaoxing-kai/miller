@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+      - USER=admin           # Web界面用户名（可选）
+      - PASS=password        # Web界面密码（可选）
+    volumes:
+      - ./config:/config     # 配置文件目录
+      - ./downloads:/downloads  # 下载目录
+      - ./watch:/watch       # 监控目录（可选）
+    ports:
+      - "4088:9091"          # Web界面端口
+      - "51413:51413"        # BT端口
+      - "51413:51413/udp"    # BT UDP端口
+    network_mode: bridge
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
