@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   qbittorrent:
-    image: ghcr.nju.edu.cn/linuxserver/qbittorrent:latest
+    image: docker.1ms.run/linuxserver/qbittorrent:latest
     container_name: qbittorrent
     environment:
       - PUID=1000
