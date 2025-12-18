@@ -1,11 +1,12 @@
 moviepilot|自动化影视管理平台|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moviepilot.yml
+nastool|影视管理平台一条龙|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/nastool.yml
 homepage|主页导航非常漂亮|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
 homeassistant|全屋智能家居中枢|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homeassistant.yml
 panel|docker导航页面|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/panel.yml
 openlist|私人网络云盘|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/openlist.yml
 pansou|免费资源搜索|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/pansou.yml
-libretv|免费在线视频搜索|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/libretv.yml
-moontv|家庭免费影音媒体|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
+libretv|全网顶流视频聚合网|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/libretv.yml
+moontv|家庭顶流免费影音媒体|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moontv.yml
 synctv|和朋友一起看电影|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/synctv.yml
 navidrome|个人音乐服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/navidrome.yml
 komga|漫画阅读器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/komga.yml

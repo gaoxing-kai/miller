@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  nastool:
+    image: nastool/nas-tools:latest
+    container_name: nastool
+    restart: unless-stopped
+    ports:
+      - "4090:3000"  # 外部端口:容器内部端口
+    environment:
+      - USERNAME=admin       # 设置默认用户名
+      - PASSWORD=admin123    # 设置默认密码
+      - PUID=1000            # 用户ID，与宿主机用户保持一致
+      - PGID=1000            # 用户组ID
+      - UMASK=022
+      - TZ=Asia/Shanghai     # 时区设置
+    volumes:
+      - ./config:/config     # 配置文件目录
+      - ./media:/media       # 媒体文件目录（可选）
+      - ./downloads:/downloads # 下载目录（可选）
+    networks:
+      - nastool-network
+
+networks:
+  nastool-network:
+    driver: bridge

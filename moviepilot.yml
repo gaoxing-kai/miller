@@ -14,7 +14,7 @@ services:
       - UMASK=022
       # 设置默认管理员账户（用户名:admin, 密码:password123）
       - USERNAME=admin
-      - PASSWORD=password123
+      - PASSWORD=登录容器日志查看超级密码
     volumes:
       - ./config:/config
       - ./data:/data
