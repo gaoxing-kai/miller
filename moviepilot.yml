@@ -11,6 +11,10 @@ services:
       - TZ=Asia/Shanghai
       - PUID=1000
       - PGID=1000
+      - UMASK=022
+      # 设置默认管理员账户（用户名:admin, 密码:password123）
+      - USERNAME=admin
+      - PASSWORD=password123
     volumes:
       - ./config:/config
       - ./data:/data
