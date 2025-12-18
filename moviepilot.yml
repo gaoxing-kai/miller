@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   moviepilot:
     image: jxxghp/moviepilot:latest

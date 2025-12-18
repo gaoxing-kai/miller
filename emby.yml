@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   emby:
     image: lscr.io/linuxserver/emby:latest
