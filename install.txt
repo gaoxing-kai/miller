@@ -15,3 +15,4 @@ qinglong|青龙面板自动化|https://raw.githubusercontent.com/gaoxing-kai/mil
 xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
 n8n|n8n工作流|curl -fsSL https://cookpay7.xyz/z/n8.sh -o n8.sh && chmod +x n8.sh && ./n8.sh && rm -f n8.sh
 qbittorrent|BT下载神器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/qbittorrent.yml
+weizhi|为知笔记|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/weizhi.yml

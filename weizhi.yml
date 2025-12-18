@@ -1,0 +1,17 @@
+services:
+  wiz:
+    image: wiznote/wizserver:latest
+    container_name: wiznote
+    restart: unless-stopped
+    ports:
+      - "4066:80"  # 主机端口:容器端口
+    volumes:
+      - ./wizdata:/wiz/storage
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=Asia/Shanghai
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
