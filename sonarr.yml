@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+      - UMASK_SET=022
+    # Sonarr 默认无认证，认证在Web界面设置
+    # 首次登录后，在 Settings -> General -> Authentication 中启用
+    volumes:
+      - ./config:/config
+      - ./tv:/tv
+      - ./downloads:/downloads
+    ports:
+      - "4890:8989"
+    restart: unless-stopped
+    networks:
+      - sonarr-network
+
+networks:
+  sonarr-network:
+    driver: bridge

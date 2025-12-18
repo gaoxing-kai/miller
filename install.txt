@@ -1,5 +1,6 @@
 moviepilot|自动化影视管理平台|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moviepilot.yml
-nastool|影视管理平台一条龙|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/nastool.yml
+nastool|影视管理平台|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/nastool.yml
+sonarr|自动追剧追番|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/sonarr.yml
 homepage|主页导航非常漂亮|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
 homeassistant|全屋智能家居中枢|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homeassistant.yml
 panel|docker导航页面|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/panel.yml
