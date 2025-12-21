@@ -10,8 +10,8 @@ services:
       - USERNAME=admin
       - PASSWORD=admin123
     volumes:
-      - /appdata/qbittorrent/config:/config
-      - /media/downloads:/downloads
+      - ./appdata/qbittorrent/config:/config
+      - ./media/downloads:/downloads
     ports:
       - 4096:4096  # 修改为4096
       - 6881:6881

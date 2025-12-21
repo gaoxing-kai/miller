@@ -21,9 +21,9 @@ services:
       - MEDIA_DIR=/media/movies
       - DOWNLOAD_DIR=/downloads
     volumes:
-      - /appdata/moviepilot/config:/config
-      - /media/movies:/media/movies
-      - /media/downloads:/downloads
+      - ./appdata/moviepilot/config:/config
+      - ./media/movies:/media/movies
+      - ./media/downloads:/downloads
     networks:
       - media_network
     depends_on:
