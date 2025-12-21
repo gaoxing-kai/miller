@@ -1,12 +1,10 @@
-version: '3.8'
-
 services:
   emby:
     image: lscr.io/linuxserver/emby:latest
     container_name: emby
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=Asia/Shanghai
     volumes:
       - ./config:/config
@@ -25,5 +23,5 @@ services:
 
 networks:
   media_network:
-    external: true
+    driver: bridge
     name: media_network
