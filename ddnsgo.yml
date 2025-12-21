@@ -7,3 +7,5 @@ services:
       - "4044:9876"
     volumes:
       - ./ddns-data:/root
+    environment:
+      - TZ=Asia/Shanghai
