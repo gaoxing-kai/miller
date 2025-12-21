@@ -1,6 +1,6 @@
 services:
   transmission:
-    image: lscr.io/linuxserver/transmission:latest
+    image: linuxserver/transmission:latest
     container_name: transmission
     restart: unless-stopped
     environment:
