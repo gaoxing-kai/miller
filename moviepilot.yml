@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   moviepilot:
     image: jxxghp/moviepilot:latest
@@ -7,23 +9,23 @@ services:
       - "4099:3000"
     environment:
       - TZ=Asia/Shanghai
-      - PUID=0
-      - PGID=0
+      - PUID=1000
+      - PGID=1000
       - UMASK=022
       - USERNAME=admin
       - PASSWORD=admin123
-      # qBittorrent配置 - 端口更新为4096
+      # qBittorrent配置
       - QBITTORRENT_HOST=qbittorrent
-      - QBITTORRENT_PORT=4096  # 修改为4096
+      - QBITTORRENT_PORT=4096
       - QBITTORRENT_USERNAME=admin
       - QBITTORRENT_PASSWORD=admin123
       # 媒体库路径配置
       - MEDIA_DIR=/media/movies
       - DOWNLOAD_DIR=/downloads
     volumes:
-      - ./appdata/moviepilot/config:/config
-      - ./media/movies:/media/movies
-      - ./media/downloads:/downloads
+      - ./config:/config
+      - ./movies:/media/movies
+      - ./downloads:/downloads
     networks:
       - media_network
     depends_on:
@@ -55,5 +57,5 @@ services:
 
 networks:
   media_network:
-    external: true
     name: media_network
+    external: true

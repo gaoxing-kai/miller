@@ -1,14 +1,16 @@
+version: '3.8'
+
 services:
   emby:
     image: lscr.io/linuxserver/emby:latest
     container_name: emby
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=1000
+      - PGID=1000
       - TZ=Asia/Shanghai
     volumes:
-      - ./appdata/emby/config:/config
-      - ./media/movies:/data/movies
+      - ./config:/config
+      - ./movies:/data/movies
       - /dev/dri:/dev/dri
     ports:
       - 4077:8096
@@ -18,10 +20,8 @@ services:
     restart: unless-stopped
     networks:
       - media_network
-    depends_on:
-      - moviepilot
 
 networks:
   media_network:
-    external: true
     name: media_network
+    external: true
