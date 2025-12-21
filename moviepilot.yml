@@ -11,7 +11,7 @@ services:
       - PGID=0
       - UMASK=022
       - USERNAME=admin
-      - PASSWORD=admin123
+      - PASSWORD=进入容器查看超级密码
       # qBittorrent配置
       - QBITTORRENT_HOST=qbittorrent
       - QBITTORRENT_PORT=4096

@@ -8,7 +8,7 @@ services:
       - TZ=Asia/Shanghai
       - WEBUI_PORT=4096
       - USERNAME=admin
-      - PASSWORD=admin123
+      - PASSWORD=进入容器日志查看密码
     volumes:
       - ./config:/config
       - ./downloads:/downloads
