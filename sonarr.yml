@@ -3,8 +3,8 @@ services:
     image: linuxserver/sonarr:latest
     container_name: sonarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=Asia/Shanghai
       - UMASK_SET=022
     # Sonarr 默认无认证，认证在Web界面设置
