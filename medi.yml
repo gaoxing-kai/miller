@@ -1,0 +1,174 @@
+version: '3.8'
+
+services:
+  # MoviePilot 媒体管理
+  moviepilot:
+    container_name: moviepilot
+    image: jxxghp/moviepilot-v2:latest
+    networks:
+      - media_network
+    ports:
+      - '5655:3000'  # Web界面端口
+      - '3001:3001'  # API端口（保持内部不变）
+    volumes:
+      # 配置目录
+      - ./data/moviepilot/config:/config
+      # 缓存目录
+      - ./data/moviepilot/cache:/moviepilot/.cache/ms-playwright
+      # Docker套接字
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # 统一媒体库
+      - ./data/media:/media
+      # qBittorrent种子备份
+      - ./data/qbittorrent/BT_backup:/bt_backup
+    environment:
+      # 基础时区
+      - TZ=Asia/Shanghai
+      # 端口配置
+      - NGINX_PORT=3000
+      - PORT=3001
+      # 用户权限（非root，更安全）
+      - PUID=0
+      - PGID=0
+      - UMASK=022
+      # 管理员账户
+      - SUPERUSER=admin
+      - SUPERUSER_PASSWORD=admin123
+      # 缓存配置
+      - CACHE_BACKEND_TYPE=redis
+      - CACHE_BACKEND_URL=redis://:redis_password@redis:6379
+      # 更新设置（可选）
+      # - MOVIEPILOT_AUTO_UPDATE=true
+      # - AUTO_UPDATE_RESOURCE=true
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Redis缓存服务
+  redis:
+    container_name: redis
+    image: redis:7-alpine
+    networks:
+      - media_network
+    volumes:
+      - ./data/redis:/data
+    command: >
+      redis-server
+      --save 600 1
+      --requirepass redis_password
+      --appendonly yes
+      --appendfsync everysec
+    environment:
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "redis_password", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # qBittorrent下载器
+  qbittorrent:
+    container_name: qbittorrent
+    image: linuxserver/qbittorrent:latest
+    networks:
+      - media_network
+    ports:
+      - '5656:8080'  # WebUI端口
+      - '6881:6881'  # BT监听端口
+      - '6881:6881/udp'  # BT监听UDP端口
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Shanghai
+      - WEBUI_PORT=8080
+      - QBITTORRENT_WEBUI_ADDRESS=0.0.0.0
+    volumes:
+      - ./data/qbittorrent/config:/config
+      - ./data/downloads:/downloads
+      - ./data/media:/media
+    restart: unless-stopped
+
+  # FlareSolverr（Cloudflare绕过）
+  flaresolverr:
+    container_name: flaresolverr
+    image: ghcr.nju.edu.cn/flaresolverr/flaresolverr:latest
+    networks:
+      - media_network
+    ports:
+      - '5657:8191'
+    environment:
+      - TZ=Asia/Shanghai
+      - LOG_LEVEL=info
+      - CAPTCHA_SOLVER=none
+      - HEADLESS=true
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8191"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # LibreTV（电视直播）
+  libretv:
+    container_name: libretv
+    image: bestzwei/libretv:latest
+    networks:
+      - media_network
+    ports:
+      - '5658:8080'
+    environment:
+      - PASSWORD=admin123
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Emby媒体服务器
+  emby:
+    container_name: emby
+    image: emby/embyserver:latest
+    networks:
+      - media_network
+    ports:
+      - '5659:8096'  # HTTP端口
+      - '5660:8920'  # HTTPS端口
+    environment:
+      - TZ=Asia/Shanghai
+      - UID=0
+      - GID=0
+    volumes:
+      # 配置目录
+      - ./data/emby/config:/config
+      # 媒体库
+      - ./data/media:/media
+      # 转码缓存
+      - ./data/emby/transcoding:/transcoding
+    devices:
+      # 硬件转码设备
+      - /dev/dri:/dev/dri
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8096"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+# 网络配置
+networks:
+  media_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
