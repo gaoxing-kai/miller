@@ -15,7 +15,7 @@ services:
       - "3033:3001"
     environment:
       - NODE_ENV=production
-      - ACCESS_PASSWORD=123321
+      - ACCESS_PASSWORD=admin123
       - CONFIG_PATH=/app/config
     volumes:
       - ./config:/app/config
