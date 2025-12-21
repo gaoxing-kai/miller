@@ -9,3 +9,4 @@ services:
       - ./ddns:/root
     environment:
       - TZ=Asia/Shanghai
+      - USERNAME=自定义登录并配置管理员
