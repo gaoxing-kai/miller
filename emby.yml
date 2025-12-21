@@ -8,7 +8,7 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - ./config:/config
-      - ./movies:/data/movies
+      - ./media:/data/media
       - /dev/dri:/dev/dri
     ports:
       - 4077:8096
@@ -16,12 +16,3 @@ services:
     devices:
       - /dev/dri:/dev/dri
     restart: unless-stopped
-    networks:
-      media_network:
-        aliases:
-          - emby
-
-networks:
-  media_network:
-    driver: bridge
-    name: media_network

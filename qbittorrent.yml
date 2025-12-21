@@ -8,21 +8,18 @@ services:
       - TZ=Asia/Shanghai
       - WEBUI_PORT=4096
       - USERNAME=admin
-      - PASSWORD=进入容器日志查看密码
+      - PASSWORD=进入容器日志查看初始密码
     volumes:
       - ./config:/config
       - ./downloads:/downloads
     ports:
-      - 4096:4096
+      - 4096:8080
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
     networks:
-      media_network:
-        aliases:
-          - qbittorrent
+      - qbittorrent_net
 
 networks:
-  media_network:
+  qbittorrent_net:
     driver: bridge
-    name: media_network
