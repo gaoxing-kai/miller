@@ -1,7 +1,7 @@
 services:
   ddns-go:
     image: jeessy/ddns-go:latest
-    container_name: ddns-go
+    container_name: ddnsgo
     restart: unless-stopped
     ports:
       - "4044:9876"
