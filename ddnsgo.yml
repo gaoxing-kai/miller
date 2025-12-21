@@ -1,11 +1,11 @@
 services:
-  ddns-go:
+  ddnsgo:
     image: jeessy/ddns-go:latest
     container_name: ddnsgo
     restart: unless-stopped
     ports:
       - "4044:9876"
     volumes:
-      - ./ddns-data:/root
+      - ./ddns:/root
     environment:
       - TZ=Asia/Shanghai
