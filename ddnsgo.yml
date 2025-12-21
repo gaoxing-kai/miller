@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   ddns-go:
     image: jeessy/ddns-go:latest
@@ -5,7 +7,5 @@ services:
     restart: unless-stopped
     ports:
       - "4044:9876"
-    environment:
-      - TZ=Asia/Shanghai
     volumes:
-      - ./data:/root
+      - ./ddns:/root
