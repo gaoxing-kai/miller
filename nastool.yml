@@ -8,8 +8,8 @@ services:
     environment:
       - USERNAME=admin       # 设置默认用户名
       - PASSWORD=password    # 设置默认密码
-      - PUID=1000            # 用户ID，与宿主机用户保持一致
-      - PGID=1000            # 用户组ID
+      - PUID=0            # 用户ID，与宿主机用户保持一致
+      - PGID=0            # 用户组ID
       - UMASK=022
       - TZ=Asia/Shanghai     # 时区设置
     volumes:
