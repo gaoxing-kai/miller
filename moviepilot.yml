@@ -4,22 +4,56 @@ services:
     container_name: moviepilot
     restart: unless-stopped
     ports:
-      - "4099:3000"  # 主机端口:容器端口
+      - "4099:3000"
     environment:
       - TZ=Asia/Shanghai
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - UMASK=022
-      # 设置默认管理员账户（用户名:admin, 密码:password123）
       - USERNAME=admin
-      - PASSWORD=登录容器日志查看超级密码
+      - PASSWORD=admin123
+      # qBittorrent配置 - 端口更新为4096
+      - QBITTORRENT_HOST=qbittorrent
+      - QBITTORRENT_PORT=4096  # 修改为4096
+      - QBITTORRENT_USERNAME=admin
+      - QBITTORRENT_PASSWORD=admin123
+      # 媒体库路径配置
+      - MEDIA_DIR=/media/movies
+      - DOWNLOAD_DIR=/downloads
     volumes:
-      - ./config:/config
-      - ./data:/data
-      # 根据需要添加媒体目录挂载
-      # - /path/to/media:/media
+      - /appdata/moviepilot/config:/config
+      - /media/movies:/media/movies
+      - /media/downloads:/downloads
+    networks:
+      - media_network
+    depends_on:
+      - qbittorrent
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
+
+  flaresolverr:
+    container_name: flaresolverr
+    image: ghcr.nju.edu.cn/flaresolverr/flaresolverr:latest
+    networks:
+      - media_network
+    ports:
+      - '5657:8191'
+    environment:
+      - TZ=Asia/Shanghai
+      - LOG_LEVEL=info
+      - CAPTCHA_SOLVER=none
+      - HEADLESS=true
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8191"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  media_network:
+    external: true
+    name: media_network
