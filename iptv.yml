@@ -4,7 +4,7 @@ services:
     container_name: iptv-api
     restart: unless-stopped
     ports:
-      - "8688:8000"         # 访问端口 8088 自行修改
+      - "8688:8000"        
     volumes:
       - ./config:/iptv-api/config
       - ./output:/iptv-api/output
@@ -15,8 +15,8 @@ services:
       - UPDATE_CRON=0 0 */2 * *
       # 设置国内 DNS 和代理（如有）
       - DNS=223.5.5.5,119.29.29.29
-      - USERNAME=ip+端口/txt 查看拉取进度
-      - PASSWORD=ip+端口/m3u 导入tvbox链接
+      - USERNAME=http://ip+端口/txt 查看拉取进度
+      - PASSWORD=http://ip+端口/m3u 导入tvbox链接
       # - HTTP_PROXY=http://host.docker.internal:7890
     dns:
       - 223.5.5.5
