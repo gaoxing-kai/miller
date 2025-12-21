@@ -1,6 +1,6 @@
 services:
   emby:
-    image: registry.cn-hangzhou.aliyuncs.com/linuxserver/emby:latest
+    image: lscr.io/linuxserver/emby:latest
     container_name: emby
     environment:
       - PUID=0
