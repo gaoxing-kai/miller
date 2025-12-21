@@ -7,10 +7,9 @@ services:
       - "4099:3000"  # 主机端口:容器端口
     environment:
       - TZ=Asia/Shanghai
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - UMASK=022
-      # 设置默认管理员账户（用户名:admin, 密码:password123）
       - USERNAME=admin
       - PASSWORD=登录容器日志查看超级密码
     volumes:
