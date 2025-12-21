@@ -7,8 +7,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Shanghai
-      - USER=admin           # Web界面用户名（可选）
-      - PASS=password        # Web界面密码（可选）
+      - USERNAME=admin           # Web界面用户名（可选）
+      - PASSWORD=password        # Web界面密码（可选）
     volumes:
       - ./config:/config     # 配置文件目录
       - ./downloads:/downloads  # 下载目录

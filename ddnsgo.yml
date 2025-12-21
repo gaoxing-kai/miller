@@ -8,4 +8,4 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - ./ddns-data:/root
+      - ./data:/root

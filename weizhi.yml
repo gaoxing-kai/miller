@@ -10,6 +10,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       - TZ=Asia/Shanghai
+      - USERNAME=admin@wiz.cn
+      - PASSWORD=123456
     logging:
       driver: "json-file"
       options:
