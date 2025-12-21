@@ -4,8 +4,8 @@ services:
     container_name: transmission
     restart: unless-stopped
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=Asia/Shanghai
       - USERNAME=admin           # Web界面用户名（可选）
       - PASSWORD=password        # Web界面密码（可选）
