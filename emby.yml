@@ -1,6 +1,6 @@
 services:
   emby:
-    image: dockerproxy.com/linuxserver/emby:latest
+    image: registry.cn-hangzhou.aliyuncs.com/linuxserver/emby:latest
     container_name: emby
     environment:
       - PUID=0
