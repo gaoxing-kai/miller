@@ -1,0 +1,22 @@
+services:
+  radarr:
+    image: ghcr.nju.edu.cn/linuxserver/radarr:latest  
+    container_name: radarr  
+    restart: unless-stopped  
+    environment:
+      - PUID=0  # 设置运行容器的用户ID，请修改为你的宿主机的用户ID
+      - PGID=0  # 设置运行容器的用户组ID，请修改为你的宿主机的用户组ID
+      - TZ=Asia/Shanghai 
+    volumes:
+      - ./config:/config  
+      - ./movies:/movies  # 请修改为你的电影库在宿主机上的实际路径
+      - ./downloads:/downloads  # 请修改为你的下载客户端（如qBittorrent）的下载目录路
+
+    ports:
+      - "5010:7878"  
+    networks:
+      - radarr-network  
+
+networks:
+  radarr-network:
+    name: radarr-network

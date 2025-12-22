@@ -1,0 +1,13 @@
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest  # 使用最新的稳定版镜像
+    container_name: prowlarr
+    environment:
+      - PUID=0  # 重要：请修改为你的宿主机的用户ID
+      - PGID=0  # 重要：请修改为你的宿主机的组ID
+      - TZ=Asia/Shanghai  # 重要：请设置为你的时区
+    volumes:
+      - ./config:/config  # 重要：将路径修改为你希望存放配置数据的真实目录
+    ports:
+      - "5005:9696"  # 左侧端口可自定义，避免与宿主机的其他服务冲突
+    restart: unless-stopped

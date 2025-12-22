@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  newsnow:
+    image: ghcr.nju.edu.cn/ourongxing/newsnow:latest
+    container_name: newsnow
+    restart: unless-stopped
+    ports:
+      - "4444:4444"
+    volumes:
+      - ./data:/usr/app/.data
+    environment:
+      - HOST=0.0.0.0
+      - PORT=4444
+      - NODE_ENV=production
+      # Google OAuth配置（如需使用Google登录，请填写）
+      - G_CLIENT_ID=your_google_client_id_here
+      - G_CLIENT_SECRET=your_google_client_secret_here
+      # JWT密钥（必须修改！至少32位随机字符串）
+      # 生成命令：openssl rand -base64 32
+      - JWT_SECRET=RspZVqcT3EmtJK1onDAUl5L7ZyQJ9xTOkNU4=
+      # 数据库表初始化（首次运行保持true，后续可改为false）
+      - INIT_TABLE=true
+      # 启用缓存
+      - ENABLE_CACHE=true
+      # ProductHunt API Token（如需使用ProductHunt功能）
+      - PRODUCTHUNT_API_TOKEN=your_producthunt_api_token_here
+      # 时区设置
+      - TZ=Asia/Shanghai
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4444/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
