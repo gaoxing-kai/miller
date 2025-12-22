@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   newsnow:
     image: ghcr.nju.edu.cn/ourongxing/newsnow:latest
