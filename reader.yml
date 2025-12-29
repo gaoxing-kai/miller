@@ -19,8 +19,6 @@ services:
       - READER_APP_SECURE=true #开启登录鉴权，开启后将支持多用户模式
       - READER_APP_SECUREKEY=admin  #管理员密码  建议修改
       - READER_APP_INVITECODE=admin123 #注册邀请码 建议修改,如不需要可注释或删除
-      - USERNAME=admin 管理员密码  #标注
-      - PASSWORD=admin123  注册邀请码 #标注
 
 networks:
   share_net:
