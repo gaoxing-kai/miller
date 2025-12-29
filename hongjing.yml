@@ -1,0 +1,13 @@
+name: redalert
+services:
+  red_alert:
+    container_name: redalert
+    image: swr.cn-north-4.myhuaweicloud.com/firfe/red_alert:0.77.0
+    network_mode: bridge
+    restart: always
+    logging:
+      options:
+        max-size: 1m
+        max-file: '1'
+    ports:
+      - 5157:5157
