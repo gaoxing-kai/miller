@@ -1,0 +1,26 @@
+services:
+  reader:
+    image: hectorqin/reader
+    container_name: reader 
+    restart: always
+    ports:
+      - 4396:8080 
+    networks:
+      - share_net
+    volumes:
+      - ./logs:/logs #log映射目录 /home/reader/logs 映射目录可自行修改
+      - ./storage:/storage #数据映射目录 /home/reader/storage 映射目录可自行修改
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - READER_APP_USERLIMIT=50 #用户上限,默认50
+      - READER_APP_USERBOOKLIMIT=200 #用户书籍上限,默认200
+      - READER_APP_CACHECHAPTERCONTENT=true #开启缓存章节内容 V2.0
+      - READER_APP_SECURE=true #开启登录鉴权，开启后将支持多用户模式
+      - READER_APP_SECUREKEY=admin  #管理员密码  建议修改
+      - READER_APP_INVITECODE=admin123 #注册邀请码 建议修改,如不需要可注释或删除
+      - USERNAME=admin 管理员密码  #标注
+      - PASSWORD=admin123  注册邀请码 #标注
+
+networks:
+  share_net:
+    driver: bridge

@@ -1,0 +1,27 @@
+services:
+  suwayomi:
+    image: ghcr.nju.edu.cn/suwayomi/suwayomi-server:stable
+    user: "0:0"
+    container_name: suwayomi
+    ports:
+      - "55531:4567"
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - ./data:/home/suwayomi/.local/share/Tachidesk
+    restart: unless-stopped
+    networks:
+      - suwayomi-network
+
+  flaresolverr:
+    image: ghcr.nju.edu.cn/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      TZ: Asia/Shanghai 
+    networks:
+      - suwayomi-network
+    restart: unless-stopped
+
+networks:
+  suwayomi-network:
+    driver: bridge
