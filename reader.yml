@@ -1,15 +1,17 @@
+version: '3.8'  # 添加版本号
+
 services:
   reader:
     image: hectorqin/reader
-    container_name: reader
+    container_name: reader 
     restart: always
     ports:
-      - "4396:8080"
+      - "4396:8080"  # 端口号添加引号
     networks:
       - share_net
     volumes:
-      - ./logs:/logs
-      - ./storage:/storage
+      - ./reader/logs:/logs
+      - ./reader/storage:/storage
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - READER_APP_USERLIMIT=50
@@ -21,4 +23,5 @@ services:
 
 networks:
   share_net:
+    external: true  # 如果网络已存在，添加此参数
     driver: bridge
