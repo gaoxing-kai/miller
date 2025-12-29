@@ -3,6 +3,7 @@ version: '3.8'  # 添加版本号
 services:
   reader:
     image: hectorqin/reader
+    user: 0:0
     container_name: reader 
     restart: always
     ports:
