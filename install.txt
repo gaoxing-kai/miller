@@ -24,6 +24,7 @@ prowlarr|影视资源索引器|https://raw.githubusercontent.com/gaoxing-kai/mil
 radarr|电影资源刮削封面|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/radarr.yml
 suwayomi|漫画在线阅读|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/suwayomi.yml
 reader|免费小说阅读|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/reader.yml
+solara|免费无损音乐下载|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/solara.yml
 xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
 n8n|n8n工作流|curl -fsSL https://cookpay7.xyz/z/n8.sh -o n8.sh && chmod +x n8.sh && ./n8.sh && rm -f n8.sh
 

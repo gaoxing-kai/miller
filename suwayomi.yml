@@ -4,7 +4,7 @@ services:
     user: "0:0"
     container_name: suwayomi
     ports:
-      - "55531:4567"
+      - "5044:4567"
     environment:
       TZ: Asia/Shanghai
     volumes:

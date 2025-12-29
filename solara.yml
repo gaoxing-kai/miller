@@ -1,0 +1,12 @@
+services:
+  solara-music:
+    image: ghcr.nju.edu.cn/panda-995/solara-music:latest  # 亦可使用 1555904/solara-music:latest
+    container_name: solara
+    restart: unless-stopped
+    ports:
+      - "5078:3001"  # 访问端口，可按需修改
+    environment:
+      - NODE_ENV=production
+    # 可选：映射日志目录，方便排查问题
+    volumes:
+      - ./logs:/app/logs
