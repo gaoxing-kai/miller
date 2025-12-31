@@ -1,0 +1,16 @@
+#version: '3.9'
+name: rustpad
+services:
+  rustpad:
+    container_name: rustpad
+    image: swr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.08.28
+    network_mode: bridge
+    restart: always
+    cpus: 1
+    mem_limit: 512m
+    logging:
+      options:
+        max-size: 1m
+        max-file: '3'
+    ports:
+      - 3720:3030
