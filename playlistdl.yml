@@ -1,0 +1,14 @@
+services:
+  playlistdl:
+    image: tanner23456/playlistdl:v2
+    container_name: playlistdl
+    restart: unless-stopped
+    volumes:
+      - ./音乐下载:/app/data  
+    ports:
+      - "5365:5000"
+    environment:
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: "123456"  # 密码
+      AUDIO_DOWNLOAD_PATH: /app/data
+      CLEANUP_INTERVAL: 300
