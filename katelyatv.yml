@@ -1,0 +1,35 @@
+services:
+  katelyatv:
+    image: ghcr.nju.edu.cn/katelya77/katelyatv:main-3ce1bd1
+    container_name: katelyatv
+    restart: unless-stopped
+    ports:
+
+      - "3978:3000"
+    environment:
+      # 管理员账号（必填，登录用）
+      - USERNAME=admin
+      # 管理员密码（必填，建议使用复杂密码）
+      - PASSWORD=123456
+
+      # 存储配置：这里指定使用 Redis
+      - NEXT_PUBLIC_STORAGE_TYPE=redis
+      # Redis 地址，默认使用同一 compose 内的服务名
+      - REDIS_URL=redis://katelyatv-redis:6379
+
+      # 功能开关：是否允许新用户注册
+      - NEXT_PUBLIC_ENABLE_REGISTER=true
+
+    depends_on:
+      - katelyatv-redis
+
+  katelyatv-redis:
+    image: redis:7-alpine
+    container_name: katelyatv-redis
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
+
+volumes:
+  redis_data:
+
