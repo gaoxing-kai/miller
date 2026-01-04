@@ -4,9 +4,10 @@ services:
     container_name: xiaomo-anime
     restart: unless-stopped
     ports:
-      - "5502:5000"
+      - "5020:5000"
     volumes:
-      - ./xiaomo_data:/app/downloads
+      # 修改为相对路径
+      - ./downloads:/app/downloads
       - xiaomo_logs:/app/logs
       - xiaomo_config:/app/config
       - xiaomo_libs:/usr/local/lib/python3.9/site-packages
@@ -98,11 +99,12 @@ services:
       fi;
       
       echo '6. Start App...';
-      mkdir -p logs;
+      mkdir -p downloads logs;  # 确保相对路径目录存在
       echo 'Starting Python Application...';
       exec python app.py;
       "
 
+# 删除 xiaomo_data 卷定义，因为现在使用相对路径
 volumes:
   xiaomo_logs:
   xiaomo_config:
