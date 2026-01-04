@@ -1,0 +1,17 @@
+services:
+  omnibox:
+    image: lampon/omnibox:latest  
+    container_name: omnibox  
+    restart: unless-stopped 
+    environment:
+      - TZ=Asia/Shanghai  
+    ports:
+      - "7023:7023"  
+    volumes:
+      - ./data:/app/data 
+    networks:  
+      - media-net
+
+networks:
+  media-net:
+    driver: bridge
