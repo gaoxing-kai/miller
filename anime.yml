@@ -4,19 +4,16 @@ services:
     container_name: xiaomo-anime
     restart: unless-stopped
     ports:
-      - "5000:5000"
+      - "7171:5000"
     volumes:
-      # 1. 修改：使用飞牛NAS绝对路径绑定挂载数据目录
-      - ./xiaomo_data:/app/downloads
-      # 2. 修改：使用飞牛NAS绝对路径绑定挂载日志目录
-      - ./xiaomo_logs:/app/logs
-      # 3. 修改：使用飞牛NAS绝对路径绑定挂载配置目录
-      - ./xiaomo_config:/app/config
-      # 4. 修改：使用飞牛NAS绝对路径绑定挂载Python库目录
-      - ./xiaomo_libs:/usr/local/lib/python3.9/site-packages
-      # 5. 本地文件挂载：将当前目录下的修补文件挂载到容器内
+      - ./downloads:/app/downloads
+      - ./logs:/app/logs
+      - ./config:/app/config
+      - ./libs:/usr/local/lib/python3.9/site-packages
+      # Mount local patched omofun.py
       - ./omofun.py:/app/omofun_patched.py
       - ./fantu.py:/app/fantu_patched.py
+    user: "0:0"	
     environment:
       - TZ=Asia/Shanghai
       # 源码下载地址
@@ -107,10 +104,3 @@ services:
       exec python app.py;
       "
 
-# 注意：由于所有卷都已改为绑定挂载，这里不再需要定义命名卷
-# 保留此部分作为注释，以便了解原始配置结构
-# volumes:
-#   xiaomo_data:
-#   xiaomo_logs:
-#   xiaomo_config:
-#   xiaomo_libs:
