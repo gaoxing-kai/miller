@@ -4,7 +4,7 @@ services:
     container_name: xiaomo-anime
     restart: unless-stopped
     ports:
-      - "5130:5000"
+      - "5330:5000"
     volumes:
       # 全部改为相对路径
       - ./downloads:/app/downloads
@@ -20,24 +20,33 @@ services:
       - ZIP_URL=https://xxla.iepose.cn/FTP/%E6%B5%8B%E8%AF%95/1/xiaomo-anime-deploy.zip
       - DEBIAN_FRONTEND=noninteractive
       # Force Restart Trigger (Update this to force recreate)
-      - FORCE_UPDATE_ID=20260103_002
+      - FORCE_UPDATE_ID=20260103_003
       # Ensure Python doesn't buffer output
       - PYTHONUNBUFFERED=1
     command: >
       /bin/bash -c "
       set -e;
-      echo '=== BOOT START V3 (All Relative Paths) ===';
+      echo '=== BOOT START V4 (Fixed PIP Issue) ===';
       
       echo '1. Environment Check...';
       python --version;
+      
+      echo '1.1. Check and Install PIP...';
+      if ! command -v pip >/dev/null 2>&1; then
+          echo 'PIP not found, installing...';
+          if [ -f /etc/apt/sources.list.d/debian.sources ]; then sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources; fi;
+          if [ -f /etc/apt/sources.list ]; then sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list; fi;
+          
+          apt-get update;
+          apt-get install -y --no-install-recommends python3-pip;
+          ln -sf /usr/bin/pip3 /usr/bin/pip;
+      fi;
+      
       pip --version;
       
       echo '1.5. Install System Tools (curl/unzip/ffmpeg)...';
       if ! command -v curl &> /dev/null || ! command -v ffmpeg &> /dev/null; then
           echo 'System tools (curl or ffmpeg) not found, installing...';
-          if [ -f /etc/apt/sources.list.d/debian.sources ]; then sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources; fi;
-          if [ -f /etc/apt/sources.list ]; then sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list; fi;
-          
           apt-get update;
           apt-get install -y --no-install-recommends curl unzip ffmpeg;
       fi;
@@ -93,15 +102,13 @@ services:
           
           pip install --no-cache-dir flask flask-socketio eventlet gevent greenlet requests beautifulsoup4 lxml m3u8 pycryptodome;
           
-          if [ -f 'requirements.txt' ]; then pip install --no-cache-dir -r requirements.txt; fi;
+          if [ -f 'requirements.txt' ]; then pip install --no-install-recommends --no-cache-dir -r requirements.txt; fi;
       else
           echo 'Dependencies already installed in system.';
       fi;
       
       echo '6. Start App...';
-      mkdir -p downloads logs config;  # 确保所有相对路径目录存在
+      mkdir -p downloads logs config;
       echo 'Starting Python Application...';
       exec python app.py;
       "
-
-# 删除所有卷定义，因为现在全部使用相对路径
