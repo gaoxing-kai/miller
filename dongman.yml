@@ -1,10 +1,10 @@
 services:
-  xiaomo-anime:
+  xiaomoanime:
     image: python:3.9-slim
-    container_name: xiaomo-anime
+    container_name: xiaomoanime
     restart: unless-stopped
     ports:
-      - "5340:5000"
+      - "5341:5000"
     volumes:
       - xiaomo_data:/app/downloads
       - xiaomo_logs:/app/logs
