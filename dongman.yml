@@ -4,13 +4,13 @@ services:
     container_name: xiaomo-anime
     restart: unless-stopped
     ports:
-      - "5020:5000"
+      - "5130:5000"
     volumes:
-      # 修改为相对路径
+      # 全部改为相对路径
       - ./downloads:/app/downloads
-      - xiaomo_logs:/app/logs
-      - xiaomo_config:/app/config
-      - xiaomo_libs:/usr/local/lib/python3.9/site-packages
+      - ./logs:/app/logs
+      - ./config:/app/config
+      - ./libs:/usr/local/lib/python3.9/site-packages
       # Mount local patched omofun.py
       - ./omofun.py:/app/omofun_patched.py
       - ./fantu.py:/app/fantu_patched.py
@@ -26,7 +26,7 @@ services:
     command: >
       /bin/bash -c "
       set -e;
-      echo '=== BOOT START V3 (Persisted Libs) ===';
+      echo '=== BOOT START V3 (All Relative Paths) ===';
       
       echo '1. Environment Check...';
       python --version;
@@ -95,17 +95,13 @@ services:
           
           if [ -f 'requirements.txt' ]; then pip install --no-cache-dir -r requirements.txt; fi;
       else
-          echo 'Dependencies already installed in system (Persisted). Skipping download.';
+          echo 'Dependencies already installed in system.';
       fi;
       
       echo '6. Start App...';
-      mkdir -p downloads logs;  # 确保相对路径目录存在
+      mkdir -p downloads logs config;  # 确保所有相对路径目录存在
       echo 'Starting Python Application...';
       exec python app.py;
       "
 
-# 删除 xiaomo_data 卷定义，因为现在使用相对路径
-volumes:
-  xiaomo_logs:
-  xiaomo_config:
-  xiaomo_libs:
+# 删除所有卷定义，因为现在全部使用相对路径
