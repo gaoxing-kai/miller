@@ -4,12 +4,12 @@ services:
     container_name: xiaomo-anime
     restart: unless-stopped
     ports:
-      - "5212:5000"
+      - "5502:5000"
     volumes:
-      - ./xiaomo_data:/app/downloads
-      - ./xiaomo_logs:/app/logs
-      - ./xiaomo_config:/app/config
-      - ./xiaomo_libs:/usr/local/lib/python3.9/site-packages
+      - xiaomo_data:/app/downloads
+      - xiaomo_logs:/app/logs
+      - xiaomo_config:/app/config
+      - xiaomo_libs:/usr/local/lib/python3.9/site-packages
       # Mount local patched omofun.py
       - ./omofun.py:/app/omofun_patched.py
       - ./fantu.py:/app/fantu_patched.py
