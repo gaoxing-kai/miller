@@ -31,6 +31,7 @@ contra|魂斗罗网页版X86|https://raw.githubusercontent.com/gaoxing-kai/mille
 feiji|疯狂飞机网页版X86|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/feiji.yml
 katelyatv|超多影视聚合在线播放|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/katelyatv.yml
 playlistdl|超好用音乐下载工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/playlistdl.yml
+dongman|全自动动漫追番|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/dongman.yml
 xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
 n8n|n8n工作流|curl -fsSL https://cookpay7.xyz/z/n8.sh -o n8.sh && chmod +x n8.sh && ./n8.sh && rm -f n8.sh
 
