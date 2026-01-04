@@ -9,7 +9,6 @@ services:
       - ./downloads:/app/downloads
       - ./logs:/app/logs
       - ./config:/app/config
-      - ./libs:/usr/local/lib/python3.9/site-packages
       # Mount local patched omofun.py
       - ./omofun.py:/app/omofun_patched.py
       - ./fantu.py:/app/fantu_patched.py
