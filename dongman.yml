@@ -1,16 +1,15 @@
 services:
   xiaomo-anime:
     image: python:3.9-slim
-    user: "0:0"
     container_name: xiaomo-anime
     restart: unless-stopped
     ports:
       - "5502:5000"
     volumes:
       - ./xiaomo_data:/app/downloads
-      - ./xiaomo_logs:/app/logs
-      - ./xiaomo_config:/app/config
-      - ./xiaomo_libs:/usr/local/lib/python3.9/site-packages
+      - xiaomo_logs:/app/logs
+      - xiaomo_config:/app/config
+      - xiaomo_libs:/usr/local/lib/python3.9/site-packages
       # Mount local patched omofun.py
       - ./omofun.py:/app/omofun_patched.py
       - ./fantu.py:/app/fantu_patched.py
@@ -105,7 +104,6 @@ services:
       "
 
 volumes:
-  xiaomo_data:
   xiaomo_logs:
   xiaomo_config:
   xiaomo_libs:
