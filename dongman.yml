@@ -1,22 +1,22 @@
 services:
-  anime:
+  xiaomo-anime:
     image: python:3.9-slim
-    container_name: anime
+    container_name: xiaomo-anime
     restart: unless-stopped
     ports:
-      - "5151:5000"
+      - "5212:5000"
     volumes:
-      - ./downloads:/app/downloads
-      - ./logs:/app/logs
-      - ./config:/app/config
-      - ./libs:/usr/local/lib/python3.9/site-packages
+      - ./xiaomo_data:/app/downloads
+      - ./xiaomo_logs:/app/logs
+      - ./xiaomo_config:/app/config
+      - ./xiaomo_libs:/usr/local/lib/python3.9/site-packages
       # Mount local patched omofun.py
       - ./omofun.py:/app/omofun_patched.py
       - ./fantu.py:/app/fantu_patched.py
     environment:
       - TZ=Asia/Shanghai
       # 源码下载地址
-      - ZIP_URL=https://cookpay7.xyz/y/xiaomo-anime-deploy.zip
+      - ZIP_URL=https://xxla.iepose.cn/FTP/%E6%B5%8B%E8%AF%95/1/xiaomo-anime-deploy.zip
       - DEBIAN_FRONTEND=noninteractive
       # Force Restart Trigger (Update this to force recreate)
       - FORCE_UPDATE_ID=20260103_002
@@ -104,7 +104,7 @@ services:
       "
 
 volumes:
-  data:
-  logs:
-  config:
-  libs:
+  xiaomo_data:
+  xiaomo_logs:
+  xiaomo_config:
+  xiaomo_libs:
