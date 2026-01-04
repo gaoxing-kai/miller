@@ -7,13 +7,13 @@ services:
       - "5000:5000"
     volumes:
       # 1. 修改：使用飞牛NAS绝对路径绑定挂载数据目录
-      - /vol1/1000/Docker/dongman/xiaomo_data:/app/downloads
+      - ./xiaomo_data:/app/downloads
       # 2. 修改：使用飞牛NAS绝对路径绑定挂载日志目录
-      - /vol1/1000/Docker/dongman/xiaomo_logs:/app/logs
+      - ./xiaomo_logs:/app/logs
       # 3. 修改：使用飞牛NAS绝对路径绑定挂载配置目录
-      - /vol1/1000/Docker/dongman/xiaomo_config:/app/config
+      - ./xiaomo_config:/app/config
       # 4. 修改：使用飞牛NAS绝对路径绑定挂载Python库目录
-      - /vol1/1000/Docker/dongman/xiaomo_libs:/usr/local/lib/python3.9/site-packages
+      - ./xiaomo_libs:/usr/local/lib/python3.9/site-packages
       # 5. 本地文件挂载：将当前目录下的修补文件挂载到容器内
       - ./omofun.py:/app/omofun_patched.py
       - ./fantu.py:/app/fantu_patched.py
