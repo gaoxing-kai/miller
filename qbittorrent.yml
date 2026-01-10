@@ -1,25 +1,20 @@
 services:
   qbittorrent:
-    image: linuxserver/qbittorrent:latest
+    image: linuxserver/qbittorrent
     container_name: qbittorrent
     environment:
       - PUID=0
       - PGID=0
       - TZ=Asia/Shanghai
-      - WEBUI_PORT=4096
+      - UMASK_SET=022
+      - WEBUI_PORT=8081 
       - USERNAME=admin
       - PASSWORD=进入容器日志查看初始密码
     volumes:
-      - ./config:/config
-      - ./downloads:/downloads
+      - ./config:/config # 绝对路径请修改为自己的config文件夹
+      - ./downloads:/downloads # 绝对路径请修改为自己的downloads文件夹
     ports:
-      - 4096:8080
-      - 6881:6881
+      - 6881:6881 
       - 6881:6881/udp
+      - 8081:8081
     restart: unless-stopped
-    networks:
-      - qbittorrent_net
-
-networks:
-  qbittorrent_net:
-    driver: bridge
