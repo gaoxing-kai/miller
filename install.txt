@@ -1,5 +1,5 @@
 moviepilot|自动化影视管理平台|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moviepilot.yml
-iptv|电视直播频道采集|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/iptv.yml
+iptv|电视直播频道管理|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/iptv.yml
 homepage|主页导航非常漂亮|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
 homeassistant|全屋智能家居中枢|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homeassistant.yml
 navidrome|个人音乐服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/navidrome.yml
@@ -33,6 +33,7 @@ katelyatv|超多影视聚合在线播放|https://raw.githubusercontent.com/gaoxi
 playlistdl|超好用音乐下载工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/playlistdl.yml
 anime|全自动下载看动漫追番|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/anime.yml
 omnibox|全自动看电影网盘整合|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/omnibox.yml
+smartstrm|STRM全自动生成工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/smartstrm.yml
 xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
 n8n|n8n工作流|curl -fsSL https://cookpay7.xyz/z/n8.sh -o n8.sh && chmod +x n8.sh && ./n8.sh && rm -f n8.sh
 

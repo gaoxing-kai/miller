@@ -1,27 +1,7 @@
 services:
-  iptv-api:
-    image: guovern/iptv-api:latest
-    container_name: iptv-api
-    restart: unless-stopped
+  udp-stream:
+    image: ghcr.nju.edu.cn/cqshushu/udp-stream:latest
+    container_name: udp-stream
+    restart: always
     ports:
-      - "8688:8000"        
-    volumes:
-      - ./config:/iptv-api/config
-      - ./output:/iptv-api/output
-    environment:
-      - APP_HOST=0.0.0.0
-      - APP_PORT=8000
-      - TZ=Asia/Shanghai
-      - UPDATE_CRON=0 0 */2 * *
-      # 设置国内 DNS 和代理（如有）
-      - DNS=223.5.5.5,119.29.29.29
-      - USERNAME=http://ip+端口/txt 查看拉取进度
-      - PASSWORD=http://ip+端口/m3u 导入tvbox链接
-      # - HTTP_PROXY=http://host.docker.internal:7890
-    dns:
-      - 223.5.5.5
-      - 119.29.29.29
-    extra_hosts:
-      - "raw.githubusercontent.com:185.199.108.133"
-      - "assets.livednow.com:104.21.32.1"
-
+      - "6580:5000"

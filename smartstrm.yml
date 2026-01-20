@@ -1,0 +1,16 @@
+services:
+  smartstrm:
+    image: cp0204/smartstrm:latest
+    container_name: smartstrm
+    restart: unless-stopped
+    ports:
+      - "6788:8028"  # 宿主机端口:容器端口
+    volumes:
+      - ./config:/app/config
+      - ./logs:/app/logs
+      - ./strm:/strm
+    environment:
+      - PORT=8028
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
+      - LICENSE=
