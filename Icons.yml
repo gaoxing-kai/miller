@@ -1,0 +1,11 @@
+services:
+  hd-icons:
+    image: xushier/hd-icons:latest  # 镜像名称
+    container_name: hd-icons        # 容器名称
+    ports:
+      - 8335:50560                 # 端口映射
+    volumes:
+      - ./icons:/app/icons  # 映射图标文件夹
+    environment:
+      - TITLE=我的图标库    #自定义标题，不填默认为“小迪的图标库”
+    restart: always  # 容器始终重启
