@@ -1,0 +1,21 @@
+name: convertx-zh
+services:
+  convertx-zh:
+    container_name: convertx-zh
+    image: swr.cn-north-4.myhuaweicloud.com/firfe/convertx-zh:0.17.0
+    network_mode: bridge
+    restart: always
+    logging:
+      options:
+        max-size: 1m
+        max-file: '1'
+    environment:
+      LANGUAGE: zh
+      JWT_SECRET: c4illin_convertx
+      HTTP_ALLOWED: true
+      # 允许注册
+      #ACCOUNT_REGISTRATION: true
+    ports:
+      - 5148:3000
+    volumes:
+      - ./data:/app/data

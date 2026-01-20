@@ -34,6 +34,7 @@ playlistdl|超好用音乐下载工具|https://raw.githubusercontent.com/gaoxing
 anime|全自动下载看动漫追番|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/anime.yml
 omnibox|全自动看电影网盘整合|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/omnibox.yml
 smartstrm|STRM全自动生成工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/smartstrm.yml
+convertx|超级格式转换工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/convertx.yml
 xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
 n8n|n8n工作流|curl -fsSL https://cookpay7.xyz/z/n8.sh -o n8.sh && chmod +x n8.sh && ./n8.sh && rm -f n8.sh
 
