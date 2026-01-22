@@ -1,0 +1,7 @@
+services:
+  panhub:
+    image: wu529778790/panhub.shenzjd.com:latest
+    container_name: panhub
+    restart: always
+    ports:
+      - "6887:3000"
