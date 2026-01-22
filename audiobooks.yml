@@ -1,0 +1,13 @@
+services:
+  audiobookshelf:
+    image: ghcr.nju.edu.cn/advplyr/audiobookshelf:latest
+    restart: always
+    ports:
+      - 11278:80
+    volumes:
+      - ./config:/config
+      - ./audio:/audiobooks
+      - ./podcasts:/podcasts
+      - ./metadata:/metadata
+    environment:
+      - TZ=Asia/Shanghai
