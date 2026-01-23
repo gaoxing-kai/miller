@@ -9,8 +9,8 @@ services:
       - ./fonts:/usr/share/fonts
       - ./Downloads:/config/downloads
     environment:
-      - USER_ID=1000
-      - GROUP_ID=1001
+      - USER_ID=0
+      - GROUP_ID=0
       - UMASK=022
       - TZ=Asia/Shanghai
     restart: always
