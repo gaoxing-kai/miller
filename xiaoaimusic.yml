@@ -1,0 +1,12 @@
+services:  # 必须包含 services 部分
+  xiaoaimusic:
+    image: hanxi/xiaomusic:latest
+    container_name: xiaoaimusic
+    ports:
+      - "25025:8090"
+    volumes:
+      - ./xiaoaimusic:/app/conf
+      - ./ssMusic:/app/music
+    environment:
+      - XIAOMUSIC_PUBLIC_PORT=8090
+    restart: unless-stopped
