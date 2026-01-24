@@ -3,9 +3,9 @@ services:
         container_name: zfile
         restart: always
         ports:
-            - '88:8080'    # 左边的端口可以修改，右边的端口不要修改
+            - '5791:8080'    # 左边的端口可以修改，右边的端口不要修改
         volumes:
             - './db:/root/.zfile-v4/db'      # 数据库映射到当前文件夹下的db目录
             - './logs:/root/.zfile-v4/logs'  # 日志文件映射到当前文件夹下的logs目录
-            - '/home/docker/zfile:/root/.zfile-v4/data'  # 额外映射了一个data目录，等下本地存储我们就可以填/root/.zfile-v4/data目录啦
+            - '/zfile:/root/.zfile-v4/data'  # 额外映射了一个data目录，等下本地存储我们就可以填/root/.zfile-v4/data目录啦
         image: zhaojun1998/zfile
