@@ -1,5 +1,5 @@
 moviepilot|自动化影视管理平台|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/moviepilot.yml
-iptv|电视直播频道管理|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/iptv.yml
+iptv|IPTV电视直播频道管理|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/iptv.yml
 homepage|主页导航非常漂亮|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homepage.yml
 homeassistant|全屋智能家居中枢|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homeassistant.yml
 navidrome|个人音乐服务器|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/navidrome.yml
