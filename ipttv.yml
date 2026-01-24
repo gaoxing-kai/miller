@@ -1,0 +1,44 @@
+services:
+  spider:
+    image: cqshushu/iptv-spider:v1.0
+    container_name: iptv-spider
+    restart: unless-stopped
+    ports:
+      - "50085:50085"
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./data:/app/data
+
+  aggregator:
+    image: yiwanaishare/iptv-aggregator:latest
+    container_name: iptv-aggregator
+    restart: unless-stopped
+    ports:
+      - "50086:50086"
+    environment:
+      # ==================== 用户自定义配置 ====================
+      # Spider 登录密码（必填，需与上方 spider 默认密码一致，或者自行修改）
+      - SPIDER_PASSWORD=admin123
+  
+      # 筛选条件配置
+      - FILTER_DAYS=5                    # 采集最近N天的数据源 (建议5-15)
+      - FILTER_TYPE=hotel                 # 数据源类型：hotel(酒店源), multicast(组播), all(全部)
+      - PRIORITY_KEYWORDS=山东,联通       # 优先关键词 (如 "山西,联通", 逗号分隔)
+      - COLLECTION_PAGES=5                # 采集页数 (建议3-8，页数越多耗时越长)
+  
+      # 运行时间配置
+      - REFRESH_INTERVAL_HOURS=12         # 自动更新间隔（小时）
+  
+      # ==================== 系统配置（一般无需修改） ====================
+      - TZ=Asia/Shanghai                  # 时区设置
+      - SPIDER_URL=http://spider:50085    # Spider 服务地址
+      - PORT=50086                        # Aggregator 服务端口
+      - HTTP_TIMEOUT=8                    # HTTP 请求超时时间（秒）
+      - SPIDER_READY_MAX_WAIT_SECONDS=600 # 等待 Spider 就绪的最大时间（秒）
+    depends_on:
+      - spider
+    volumes:
+      # 数据持久化目录（生成的 iptv.txt 会在这里）
+      - ./data:/app/data
+    working_dir: /app
