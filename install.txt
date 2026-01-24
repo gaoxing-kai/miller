@@ -44,5 +44,6 @@ xiaoaimusic|小爱音箱播放器|https://raw.githubusercontent.com/gaoxing-kai/
 cloudsaver|网盘资源自动转存|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/cloudsaver.yml
 xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
 n8n|n8n工作流|curl -fsSL https://cookpay7.xyz/z/n8.sh -o n8.sh && chmod +x n8.sh && ./n8.sh && rm -f n8.sh
+immich|immich智能相册|curl -fsSL https://cookpay7.xyz/z/immich.sh -o immich.sh && chmod +x immich.sh && ./immich.sh && rm -f immich.sh
 
 
