@@ -1,7 +1,9 @@
 services:
   mind-map:
-    image: shuiche/mind-map
-    container_name: simplemindmap
-    restart: unless-stopped
+    image: hraulein/mind-map:latest
+    container_name: mind-map
+    restart: always
     ports:
-      - "7655:8080"  # 访问地址为 http://<你的服务器IP>:7655
+      - "7653:8080"  # 访问地址为 http://<你的服务器IP>:8080
+    environment:
+      - GIN_MODE=release
