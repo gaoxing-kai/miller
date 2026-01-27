@@ -1,0 +1,7 @@
+services:
+  mind-map:
+    image: shuiche/mind-map
+    container_name: simplemindmap
+    restart: unless-stopped
+    ports:
+      - "7655:8080"  # 访问地址为 http://<你的服务器IP>:7655
