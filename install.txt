@@ -46,6 +46,7 @@ ipttv|全自动维护IPTV直播源|https://raw.githubusercontent.com/gaoxing-kai
 zfile|私人网盘管理|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/zfile.yml
 halo|最炫酷私人博客|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/halo.yml
 ezbookkeeping|家庭记账管理工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/ezbookkeeping.yml
+siyuanbiji|非常好用的思源笔记|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/siyuanbiji.yml
 xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
 n8n|n8n工作流|curl -fsSL https://cookpay7.xyz/z/n8.sh -o n8.sh && chmod +x n8.sh && ./n8.sh && rm -f n8.sh
 immich|immich智能相册|curl -fsSL https://cookpay7.xyz/z/immich.sh -o immich.sh && chmod +x immich.sh && ./immich.sh && rm -f immich.sh

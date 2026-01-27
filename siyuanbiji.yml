@@ -1,0 +1,16 @@
+services:
+  main:
+    image: b3log/siyuan
+    container_name: siyuan
+    ports:
+      - "6106:6806"
+    volumes:
+      - ./siyuan:/siyuan/workspace
+    user: "0:0"	
+    environment:
+      - TZ=Asia/Shanghai
+      - PASSWORD=admin123
+    command:
+      - --workspace=/siyuan/workspace/
+      - --accessAuthCode=admin123
+    restart: unless-stopped
