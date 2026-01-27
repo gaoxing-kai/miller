@@ -1,0 +1,50 @@
+services:
+  mysql:
+    image: mysql:8.0                         # 使用官方 MySQL 8.0 镜像
+    container_name: ezbookkeeping-mysql       # 容器名称（可自定义）
+    restart: unless-stopped                   # 除非手动停止，否则异常会自动重启
+    command:
+      - --character-set-server=utf8mb4        # 默认字符集（支持中文/emoji）
+      - --collation-server=utf8mb4_unicode_ci # 默认排序规则
+      - --default-time-zone=+08:00            # MySQL 时区（这里设为东八区）
+    volumes:
+      - ./data:/var/lib/mysql                 # MySQL 数据持久化（重要：避免重启丢数据）
+    environment:
+      MYSQL_DATABASE: ezbookkeeping           # 初始化创建数据库名
+      MYSQL_USER: ezbookkeeping               # 初始化创建普通用户
+      MYSQL_PASSWORD: ezbookkeeping           # 普通用户密码（建议改强密码）
+      MYSQL_ROOT_PASSWORD: ezbookkeeping      # root 密码（建议改强密码）
+    healthcheck:
+      # 健康检查：用 mysqladmin ping 判断 MySQL 是否就绪
+      # -p 密码要紧跟，不要有空格（-pPASSWORD）
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-pezbookkeeping"]
+      interval: 5s                            # 每 5 秒检查一次
+      timeout: 5s                             # 单次检查超时时间 5 秒
+      retries: 20                             # 连续失败 20 次才判定为 unhealthy
+
+  ezbookkeeping:
+    image: mayswind/ezbookkeeping:latest      # ezBookkeeping 镜像（latest 表示最新版）
+    container_name: ezbookkeeping             # 容器名称
+    restart: unless-stopped                   # 异常自动重启
+    ports:
+      - "8082:8080"                           # 访问端口：宿主机 8082 -> 容器 8080
+    volumes:
+      - /etc/localtime:/etc/localtime:ro      # 同步宿主机时间（只读挂载）
+      - ./storage:/ezbookkeeping/storage      # 应用存储目录（持久化数据/附件等）
+      - ./log:/ezbookkeeping/log              # 应用日志目录（写到宿主机）
+      # - ./ezbookkeeping.ini:/ezbookkeeping/conf/ezbookkeeping.ini:ro
+      # 如果你需要用配置文件覆盖默认配置，可取消注释并准备 ezbookkeeping.ini（只读更安全）
+    environment:
+      EBK_DATABASE_TYPE: mysql                # 数据库类型：mysql
+      EBK_DATABASE_HOST: mysql:3306           # 数据库地址：服务名 mysql + 端口 3306（同一网络内自动解析）
+      EBK_DATABASE_NAME: ezbookkeeping        # 数据库名
+      EBK_DATABASE_USER: ezbookkeeping        # 数据库用户
+      EBK_DATABASE_PASSWD: ezbookkeeping      # 数据库密码
+
+      EBK_LOG_MODE: file                      # 日志模式：写文件（配合 ./log 挂载）
+      EBK_SECURITY_SECRET_KEY: "change_me_to_a_long_random_string"
+      # 安全密钥：建议改成 32~64 位以上随机字符串（用于安全相关加密/签名）
+      EBK_MCP_ENABLE_MCP: "true"              # 是否启用 MCP（按你需求启用/关闭）
+    depends_on:
+      mysql:
+        condition: service_healthy            # 等 MySQL 健康检查通过后再启动 ezBookkeeping（更稳）
