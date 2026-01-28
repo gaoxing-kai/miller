@@ -1,0 +1,5 @@
+services:
+    hivision_idphotos:
+        image: linzeyi/hivision_idphotos
+        ports:
+            - '7860:7860'
