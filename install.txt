@@ -48,7 +48,7 @@ halo|最炫酷私人博客|https://raw.githubusercontent.com/gaoxing-kai/miller/
 ezbookkeeping|家庭记账管理工具|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/ezbookkeeping.yml
 simplemindmap|在线制作思维导图|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/simplemindmap.yml
 hivision|一键生成证件照|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/hivision.yml
-homarr|一键生成证件照|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homarr.yml
+homarr|非常简洁的页面导航|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homarr.yml
 xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
 n8n|n8n工作流|curl -fsSL https://cookpay7.xyz/z/n8.sh -o n8.sh && chmod +x n8.sh && ./n8.sh && rm -f n8.sh
 immich|immich智能相册|curl -fsSL https://cookpay7.xyz/z/immich.sh -o immich.sh && chmod +x immich.sh && ./immich.sh && rm -f immich.sh
