@@ -1,0 +1,9 @@
+services:
+  bentopdf:
+    image: bentopdf/bentopdf:latest  # 使用 BentoPDF 镜像
+    container_name: bentopdf  # 设置容器名称为 bentopdf
+    restart: always  # 容器崩溃时自动重启
+    ports:
+      - '6452:8080'  
+    environment:
+      - TZ=Asia/Shanghai  
