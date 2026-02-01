@@ -49,7 +49,7 @@ ezbookkeeping|家庭记账管理工具|https://raw.githubusercontent.com/gaoxing
 simplemindmap|在线制作思维导图|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/simplemindmap.yml
 hivision|一键生成证件照|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/hivision.yml
 homarr|非常简洁的页面导航|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/homarr.yml
-talebook|非常简洁的页面导航|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/talebook.yml
+talebook|私人图书馆|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/talebook.yml
 memos|强大的个人备忘录|https://raw.githubusercontent.com/gaoxing-kai/miller/refs/heads/main/memos.yml
 xiaoya|小雅影视全家桶|bash -c "$(curl -sSLf https://ailg.ggbond.org/xy_install.sh)"
 n8n|n8n工作流|curl -fsSL https://cookpay7.xyz/z/n8.sh -o n8.sh && chmod +x n8.sh && ./n8.sh && rm -f n8.sh
